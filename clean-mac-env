@@ -1,0 +1,7 @@
+#!/usr/bin/env bash
+
+rm -rf $HOME/.config/nvim
+rm -rf $HOME/.config/skhd
+rm -rf $HOME/.yabairc
+rm -rf $HOME/.tmux
+rm -rf $HOME/.zshrc

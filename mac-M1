@@ -1,0 +1,7 @@
+#!/usr/bin/env bash
+
+stow nvim
+stow skhd
+stow tmux
+stow personal
+stow yabai
