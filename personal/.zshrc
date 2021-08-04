@@ -107,6 +107,7 @@ source $ZSH/oh-my-zsh.sh
 # alias zshconfig="mate ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
 alias ibrew="arch -x86_64 /usr/local/bin/brew"
+export PATH="$PATH:/opt/homebrew/bin"
 export PATH="/usr/local/opt/python@3.7/bin:$PATH"
 export PATH="/Users/scott/bin:$PATH"
 export PATH="/Users/scott/go/bin:$PATH"
