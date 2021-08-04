@@ -117,5 +117,10 @@ export PATH="/opt/homebrew/opt/openjdk@11/bin:$PATH"
 export AWS_REGION=us-east-1
 export PATH="$PATH:$HOME/bin/flutter/bin"
 export PATH="$PATH":"$HOME/.pub-cache/bin"
+export PATH="$PATH:$HOME/.cargo/bin"
 
 function gam() { "/Users/scott/bin/gam/gam" "$@" ; }
+
+if [[ -f /usr/local/share/chtf/chtf.sh ]]; then
+    source /usr/local/share/chtf/chtf.sh
+fi
