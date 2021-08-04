@@ -1,91 +1,88 @@
-local status_ok, telescope = pcall(require, "telescope")
-if not status_ok then
-  return
+local actions = require("telescope.actions")
+require("telescope").setup({
+    defaults = {
+        file_sorter = require("telescope.sorters").get_fzy_sorter,
+        prompt_prefix = " >",
+        color_devicons = true,
+
+        file_previewer = require("telescope.previewers").vim_buffer_cat.new,
+        grep_previewer = require("telescope.previewers").vim_buffer_vimgrep.new,
+        qflist_previewer = require("telescope.previewers").vim_buffer_qflist.new,
+
+        mappings = {
+            i = {
+                ["<C-x>"] = false,
+                ["<C-q>"] = actions.send_to_qflist,
+            },
+        },
+    },
+    extensions = {
+        fzy_native = {
+            override_generic_sorter = false,
+            override_file_sorter = true,
+        },
+    },
+})
+
+require("telescope").load_extension("git_worktree")
+-- require("telescope").load_extension("fzy_native")
+
+local M = {}
+M.search_dotfiles = function()
+    require("telescope.builtin").find_files({
+        prompt_title = "< VimRC >",
+        cwd = vim.env.DOTFILES,
+        hidden = true,
+    })
 end
-local actions = require "telescope.actions"
--- if O.plugin.trouble.active then
---     local trouble = require("trouble.providers.telescope")
--- end
--- Global remapping
-------------------------------
--- '--color=never',
-telescope.setup {
-  defaults = {
-    find_command = {
-      "rg",
-      "--no-heading",
-      "--with-filename",
-      "--line-number",
-      "--column",
-      "--smart-case",
-    },
-    prompt_prefix = " ",
-    selection_caret = " ",
-    entry_prefix = "  ",
-    initial_mode = "insert",
-    selection_strategy = "reset",
-    sorting_strategy = "descending",
-    layout_strategy = "horizontal",
-    layout_config = {
-      width = 0.75,
-      prompt_position = "bottom",
-      preview_cutoff = 120,
-      horizontal = { mirror = false },
-      vertical = { mirror = false },
-    },
-    file_sorter = require("telescope.sorters").get_fzy_sorter,
-    file_ignore_patterns = {},
-    generic_sorter = require("telescope.sorters").get_generic_fuzzy_sorter,
-    -- shorten_path = true,
-    display_path = true,
-    winblend = 0,
-    border = {},
-    borderchars = { "─", "│", "─", "│", "╭", "╮", "╯", "╰" },
-    color_devicons = true,
-    use_less = true,
-    set_env = { ["COLORTERM"] = "truecolor" }, -- default = nil,
-    file_previewer = require("telescope.previewers").vim_buffer_cat.new,
-    grep_previewer = require("telescope.previewers").vim_buffer_vimgrep.new,
-    qflist_previewer = require("telescope.previewers").vim_buffer_qflist.new,
 
-    -- Developer configurations: Not meant for general override
-    buffer_previewer_maker = require("telescope.previewers").buffer_previewer_maker,
-    mappings = {
-      i = {
-        ["<C-c>"] = actions.close,
-        ["<C-j>"] = actions.move_selection_next,
-        ["<C-k>"] = actions.move_selection_previous,
-        -- ["<c-t>"] = trouble.open_with_trouble,
-        ["<C-q>"] = actions.smart_send_to_qflist + actions.open_qflist,
-        -- To disable a keymap, put [map] = false
-        -- So, to not map "<C-n>", just put
-        -- ["<c-x>"] = false,
-        -- ["<esc>"] = actions.close,
+local function refactor(prompt_bufnr)
+    local content = require("telescope.actions.state").get_selected_entry(
+        prompt_bufnr
+    )
+    require("telescope.actions").close(prompt_bufnr)
+    require("refactoring").refactor(content.value)
+end
 
-        -- Otherwise, just set the mapping to the function that you want it to be.
-        -- ["<C-i>"] = actions.select_horizontal,
+M.refactors = function()
+    require("telescope.pickers").new({}, {
+        prompt_title = "refactors",
+        finder = require("telescope.finders").new_table({
+            results = require("refactoring").get_refactors(),
+        }),
+        sorter = require("telescope.config").values.generic_sorter({}),
+        attach_mappings = function(_, map)
+            map("i", "<CR>", refactor)
+            map("n", "<CR>", refactor)
+            return true
+        end
+    }):find()
+end
 
-        -- Add up multiple actions
-        ["<CR>"] = actions.select_default + actions.center,
+M.git_branches = function()
+    require("telescope.builtin").git_branches({
+        attach_mappings = function(_, map)
+            map("i", "<c-d>", actions.git_delete_branch)
+            map("n", "<c-d>", actions.git_delete_branch)
+            return true
+        end,
+    })
+end
 
-        -- You can perform as many actions in a row as you like
-        -- ["<CR>"] = actions.select_default + actions.center + my_cool_custom_action,
-      },
-      n = {
-        ["<C-j>"] = actions.move_selection_next,
-        ["<C-k>"] = actions.move_selection_previous,
-        -- ["<c-t>"] = trouble.open_with_trouble,
-        ["<C-q>"] = actions.smart_send_to_qflist + actions.open_qflist,
-        -- ["<C-i>"] = my_cool_custom_action,
-      },
-    },
-  },
-  extensions = {
-    fzy_native = {
-      override_generic_sorter = false,
-      override_file_sorter = true,
-    },
-  },
-}
+vim.cmd 'nnoremap <leader>rr :lua require("lv-telescope").refactors()<CR>'
+vim.cmd 'vnoremap <leader>rr :lua require("lv-telescope").refactors()<CR>'
+vim.cmd 'nnoremap <leader>ps :lua require("telescope.builtin").grep_string({ search = vim.fn.input("Grep For > ")})<CR>'
+vim.cmd 'nnoremap <C-p> :lua require("telescope.builtin").git_files()<CR>'
+vim.cmd 'nnoremap <Leader>pf :lua require("telescope.builtin").find_files()<CR>'
 
--- require'telescope'.load_extension('project')
+vim.cmd 'nnoremap <leader>pw :lua require("telescope.builtin").grep_string { search = vim.fn.expand("<cword>") }<CR>'
+vim.cmd 'nnoremap <leader>pb :lua require("telescope.builtin").buffers()<CR>'
+vim.cmd 'nnoremap <leader>vh :lua require("telescope.builtin").help_tags()<CR>'
+vim.cmd 'nnoremap <leader>vrc :lua require("lv-telescope").search_dotfiles()<CR>'
+vim.cmd 'nnoremap <leader>va :lua require("lv-telescope").anime_selector()<CR>'
+vim.cmd 'nnoremap <leader>vc :lua require("lv-telescope").chat_selector()<CR>'
+vim.cmd 'nnoremap <leader>gc :lua require("lv-telescope").git_branches()<CR>'
+vim.cmd 'nnoremap <leader>gw :lua require("telescope").extensions.git_worktree.git_worktrees()<CR>'
+vim.cmd 'nnoremap <leader>gm :lua require("telescope").extensions.git_worktree.create_git_worktree()<CR>'
+
+return M

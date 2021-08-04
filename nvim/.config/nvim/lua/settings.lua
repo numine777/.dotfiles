@@ -1,60 +1,56 @@
----  HELPERS  ---
+CONFIG_PATH = vim.fn.stdpath('config')
+DATA_PATH = vim.fn.stdpath('data')
+CACHE_PATH = vim.fn.stdpath('cache')
 
-local cmd = vim.cmd
-local opt = vim.opt
+vim.g.mapleader = " "
+vim.g.guicursor = nil
+vim.opt.relativenumber = true
+vim.g.nohlsearch = true
+vim.g.hidden = true
+vim.g.noerrorbells = true
+vim.g.tabstop=4
+vim.g.softtabstop=4
+vim.g.shiftwidth=4
+vim.g.expandtab = true
+vim.g.smartindent = true
+vim.g.nu = true
+vim.g.nowrap = true
+vim.g.noswapfile = true
+vim.g.nobackup = true
+vim.g.undodir="~/.vim/undodir"
+vim.g.undofile = true
+vim.g.incsearch = true
+vim.g.termguicolors = true
+vim.g.scrolloff=8
+vim.g.noshowmode = true
+vim.g.signcolumn="yes"
+vim.g.isfname = "+=@-@"
 
----  VIM ONLY COMMANDS  ---
+-- Give more space for displaying messages.
+vim.g.cmdheight=2
 
-cmd "filetype plugin on"
-cmd('let &titleold="' .. TERMINAL .. '"')
-cmd "set inccommand=split"
-cmd "set iskeyword+=-"
-cmd "set whichwrap+=<,>,[,],h,l"
-if O.transparent_window then
-  cmd "au ColorScheme * hi Normal ctermbg=none guibg=none"
-  cmd "au ColorScheme * hi SignColumn ctermbg=none guibg=none"
-end
+-- Having longer updatetime (default is 4000 ms = 4 s) leads to noticeable
+-- delays and poor user experience.
+vim.g.updatetime=50
 
---- COLORSCHEME ---
+-- Don't pass messages to |ins-completion-menu|.
+vim.g.shortmess = "+=c"
 
-vim.g.colors_name = O.colorscheme
+vim.g.colorcolumn=80
 
----  SETTINGS  ---
+-- vim.g.wildmode = "longest,list,full"
+-- vim.g.wildmenu = true
+-- vim.g.wildignore"+=*.pyc"
+-- vim.g.wildignore"+=*_build/*"
+-- vim.g.wildignore"+=**/coverage/*"
+-- vim.g.wildignore"+=**/node_modules/*"
+-- vim.g.wildignore"+=**/android/*"
+-- vim.g.wildignore"+=**/ios/*"
+-- vim.g.wildignore"+=**/.git/*"
 
-opt.backup = false -- creates a backup file
-opt.clipboard = "unnamedplus" -- allows neovim to access the system clipboard
-opt.cmdheight = 2 -- more space in the neovim command line for displaying messages
-opt.colorcolumn = "99999" -- fix indentline for now
-opt.completeopt = { "menuone", "noselect" }
-opt.conceallevel = 0 -- so that `` is visible in markdown files
-opt.fileencoding = "utf-8" -- the encoding written to a file
-opt.guifont = "monospace:h17" -- the font used in graphical neovim applications
-opt.hidden = O.hidden_files -- required to keep multiple buffers and open multiple buffers
-opt.hlsearch = O.hl_search -- highlight all matches on previous search pattern
-opt.ignorecase = O.ignore_case -- ignore case in search patterns
-opt.mouse = "a" -- allow the mouse to be used in neovim
-opt.pumheight = 10 -- pop up menu height
-opt.showmode = false -- we don't need to see things like -- INSERT -- anymore
-opt.showtabline = 2 -- always show tabs
-opt.smartcase = O.smart_case -- smart case
-opt.smartindent = true -- make indenting smarter again
-opt.splitbelow = true -- force all horizontal splits to go below current window
-opt.splitright = true -- force all vertical splits to go to the right of current window
-opt.swapfile = false -- creates a swapfile
-opt.termguicolors = true -- set term gui colors (most terminals support this)
-opt.timeoutlen = O.timeoutlen -- time to wait for a mapped sequence to complete (in milliseconds)
-opt.title = true -- set the title of window to the value of the titlestring
-opt.titlestring = "%<%F%=%l/%L - nvim" -- what the title of the window will be set to
-opt.undodir = CACHE_PATH .. "/undo" -- set an undo directory
-opt.undofile = true -- enable persisten undo
-opt.updatetime = 300 -- faster completion
-opt.writebackup = false -- if a file is being edited by another program (or was written to file while editing with another program), it is not allowed to be edited
-opt.expandtab = true -- convert tabs to spaces
-opt.shiftwidth = 4 -- the number of spaces inserted for each indentation
-opt.shortmess:append "c"
-opt.tabstop = 4 -- insert 4 spaces for a tab
-opt.cursorline = O.cursorline -- highlight the current line
-opt.number = O.number -- set numbered lines
-opt.relativenumber = O.relative_number -- set relative numbered lines
-opt.signcolumn = "yes" -- always show the sign column, otherwise it would shift the text each time
-opt.wrap = O.wrap_lines -- display lines as one long line
+vim.g.netrw_browse_split = 0
+vim.g.netrw_banner = 0
+vim.g.netrw_winsize = 25
+vim.g.netrw_localrmdir='rm -r'
+
+vim.g.colors_name = "gruvbox"
