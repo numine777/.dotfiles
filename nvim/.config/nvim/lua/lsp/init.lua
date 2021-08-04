@@ -25,6 +25,7 @@ vim.cmd 'nnoremap <leader>vh :lua vim.lsp.buf.hover()<CR>'
 vim.cmd 'nnoremap <leader>vca :lua vim.lsp.buf.code_action()<CR>'
 vim.cmd 'nnoremap <leader>vsd :lua vim.lsp.util.show_line_diagnostics(); vim.lsp.util.show_line_diagnostics()<CR>'
 vim.cmd 'nnoremap <leader>vn :lua vim.lsp.diagnostic.goto_next()<CR>'
+vim.cmd 'nnoremap <leader>f :Neoformat<CR>'
 -- vim.cmd 'nnoremap <leader>vll :call LspLocationList()<CR>'
 
 vim.cmd 'nnoremap <silent><leader>ca :Lspsaga code_action<CR>'
