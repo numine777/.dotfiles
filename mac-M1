@@ -1,6 +1,7 @@
 #!/usr/bin/env bash
 
 stow nvim
+stow lvim
 stow skhd
 stow tmux
 stow personal
