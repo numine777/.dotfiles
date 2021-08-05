@@ -1,4 +1,5 @@
 vim.o.completeopt = "menuone,noselect"
+vim.g.vsnip_snippet_dir =vim.fn.stdpath "config" .. "/snippets",
 
 require'compe'.setup {
     enabled = true,
