@@ -77,8 +77,6 @@ return require("packer").startup(function(use)
 	use({
 		"ThePrimeagen/refactoring.nvim",
 		requires = {
-			{ "nvim-lua/plenary.nvim" },
-			{ "nvim-treesitter/nvim-treesitter" },
 			opt = true,
 		},
 	})
@@ -106,6 +104,9 @@ return require("packer").startup(function(use)
 
 	-- Status Line and Bufferline
 	use({ "hoob3rt/lualine.nvim", opt = true })
+
+	-- Navigation
+	use({ "airblade/vim-rooter", opt = true })
 	use({ "ThePrimeagen/harpoon", opt = true })
 
 	require_plugin("nvim-lspconfig")
@@ -139,6 +140,7 @@ return require("packer").startup(function(use)
 	require_plugin("vim-matchup")
 	require_plugin("symbols-outline.nvim")
 	require_plugin("refactoring.nvim")
+	require_plugin("vim-rooter")
 	-- require_plugin("nvim-dap")
 	-- require_plugin("nvim-tree.lua")
 	-- require_plugin("gitsigns.nvim")

@@ -183,6 +183,10 @@ _G.packer_plugins = {
     needs_bufread = false,
     path = "/Users/scott/.local/share/nvim/site/pack/packer/opt/popup.nvim"
   },
+  ["refactoring.nvim"] = {
+    loaded = true,
+    path = "/Users/scott/.local/share/nvim/site/pack/packer/start/refactoring.nvim"
+  },
   ["symbols-outline.nvim"] = {
     loaded = false,
     needs_bufread = false,
@@ -223,6 +227,11 @@ _G.packer_plugins = {
     loaded = false,
     needs_bufread = false,
     path = "/Users/scott/.local/share/nvim/site/pack/packer/opt/vim-maximizer"
+  },
+  ["vim-rooter"] = {
+    loaded = false,
+    needs_bufread = false,
+    path = "/Users/scott/.local/share/nvim/site/pack/packer/opt/vim-rooter"
   },
   ["vim-vsnip"] = {
     loaded = false,

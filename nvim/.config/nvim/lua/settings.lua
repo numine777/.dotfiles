@@ -28,9 +28,10 @@ vim.g.isfname = "+=@-@"
 vim.opt.splitbelow = true
 vim.opt.splitright = true
 vim.opt.relativenumber = true
+vim.opt.clipboard = "unnamedplus" -- allows neovim to access the system clipboard
 
 -- Give more space for displaying messages.
-vim.opt.cmdheight=2
+vim.g.cmdheight=2
 
 -- Having longer updatetime (default is 4000 ms = 4 s) leads to noticeable
 -- delays and poor user experience.
