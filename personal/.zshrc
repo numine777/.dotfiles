@@ -107,6 +107,10 @@ source $ZSH/oh-my-zsh.sh
 # alias zshconfig="mate ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
 alias ibrew="arch -x86_64 /usr/local/bin/brew"
+alias brew="/opt/homebrew/bin/brew"
+alias nvim="/opt/homebrew/bin/nvim"
+alias vim="nvim"
+export PATH="$PATH:/opt/homebrew/bin"
 export PATH="/usr/local/opt/python@3.7/bin:$PATH"
 export PATH="/Users/scott/bin:$PATH"
 export PATH="/Users/scott/go/bin:$PATH"
@@ -117,5 +121,10 @@ export PATH="/opt/homebrew/opt/openjdk@11/bin:$PATH"
 export AWS_REGION=us-east-1
 export PATH="$PATH:$HOME/bin/flutter/bin"
 export PATH="$PATH":"$HOME/.pub-cache/bin"
+export PATH="$PATH:$HOME/.cargo/bin"
 
 function gam() { "/Users/scott/bin/gam/gam" "$@" ; }
+
+if [[ -f /usr/local/share/chtf/chtf.sh ]]; then
+    source /usr/local/share/chtf/chtf.sh
+fi

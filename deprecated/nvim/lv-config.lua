@@ -22,6 +22,7 @@ O.smart_case = true
 -- After changing plugin config exit and reopen LunarVim, Run :PackerInstall :PackerCompile
 O.plugin.dashboard.active = true
 O.plugin.colorizer.active = true
+O.plugin.debug.active = true
 O.plugin.dap_install.active = true
 O.plugin.floatterm.active = true
 O.plugin.ts_playground.active = false
@@ -55,7 +56,12 @@ O.lang.lua.autoformat = true
 -- O.lang.dart.sdk_path = '/Users/scott/bin/flutter/bin/dart'
 -- Additional Plugins
 -- O.user_plugins = {{"windwp/nvim-ts-autotag"}}
-O.user_plugins = {{'akinsho/flutter-tools.nvim', "ThePrimeagen/git-worktree.nvim", "tpope/vim-fugitive", "ThePrimeagen/harpoon"}}
+O.user_plugins = {{
+  "akinsho/flutter-tools.nvim",
+  "ThePrimeagen/git-worktree.nvim",
+  "tpope/vim-fugitive",
+  "ThePrimeagen/harpoon"
+}}
 
 -- Autocommands (https://neovim.io/doc/user/autocmd.html)
 -- O.user_autocommands = {{ "BufWinEnter", "*", "echo \"hi again\""}}
@@ -92,7 +98,7 @@ require("flutter-tools").setup{
   -- debugger = { -- integrate with nvim dap + install dart code debugger
   --   enabled = true,
   -- },  
-  dev_tools = { auto_open_browser = true },
+  -- dev_tools = { auto_open_browser = true },
 }
 -- Harpoon settings
 require'harpoon'.setup {
