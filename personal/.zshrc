@@ -77,7 +77,10 @@ ZSH_DISABLE_COMPFIX=true
 # Custom plugins may be added to $ZSH_CUSTOM/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
-plugins=(git)
+plugins=(
+  git
+  zsh-autosuggestions
+)
 
 source $ZSH/oh-my-zsh.sh
 
@@ -122,6 +125,8 @@ export AWS_REGION=us-east-1
 export PATH="$PATH:$HOME/bin/flutter/bin"
 export PATH="$PATH":"$HOME/.pub-cache/bin"
 export PATH="$PATH:$HOME/.cargo/bin"
+export PATH="$PATH:$HOME/Library/Android/sdk"
+export ANDROID_SDK_ROOT="$HOME/Library/Android/sdk"
 
 function gam() { "/Users/scott/bin/gam/gam" "$@" ; }
 

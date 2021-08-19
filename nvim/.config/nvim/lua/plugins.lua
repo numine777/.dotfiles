@@ -93,7 +93,6 @@ return require("packer").startup(function(use)
 	use({ "JoosepAlviste/nvim-ts-context-commentstring", opt = true })
 
 	-- Color
-	-- use {"gruvbox-community/gruvbox", opt = true}
 	use({ "flazz/vim-colorschemes", opt = true })
 	use({ "rktjmp/lush.nvim", opt = true })
 	use({ "npxbr/gruvbox.nvim", opt = true })
