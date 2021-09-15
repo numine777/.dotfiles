@@ -126,6 +126,7 @@ export PATH="$PATH:$HOME/bin/flutter/bin"
 export PATH="$PATH":"$HOME/.pub-cache/bin"
 export PATH="$PATH:$HOME/.cargo/bin"
 export PATH="$PATH:$HOME/Library/Android/sdk"
+export PATH="$PATH:$HOME/.local/bin"
 export ANDROID_SDK_ROOT="$HOME/Library/Android/sdk"
 
 function gam() { "/Users/scott/bin/gam/gam" "$@" ; }

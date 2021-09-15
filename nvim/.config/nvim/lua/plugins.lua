@@ -49,9 +49,10 @@ return require("packer").startup(function(use)
 	use({ "nvim-telescope/telescope-fzy-native.nvim", opt = true })
 
 	-- Debugging
-	use({ "puremourning/vimspector", opt = true })
-	use({ "szw/vim-maximizer", opt = true })
-	-- use {"mfussenegger/nvim-dap", opt = true}
+    use {"mfussenegger/nvim-dap", opt = true}
+	-- use({ "puremourning/vimspector", opt = true })
+	-- use({ "szw/vim-maximizer", opt = true })
+    -- use({ "Pocco81/DAPInstall.nvim", opt = true})
 
 	-- Autocomplete
 	use({ "hrsh7th/nvim-compe", opt = true })
@@ -140,7 +141,8 @@ return require("packer").startup(function(use)
 	require_plugin("symbols-outline.nvim")
 	require_plugin("refactoring.nvim")
 	require_plugin("vim-rooter")
-	-- require_plugin("nvim-dap")
+    require_plugin("nvim-dap")
+    -- require_plugin("DAPInstall.nvim")
 	-- require_plugin("nvim-tree.lua")
 	-- require_plugin("gitsigns.nvim")
 	-- require_plugin("git-blame.nvim")

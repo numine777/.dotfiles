@@ -140,6 +140,11 @@ _G.packer_plugins = {
     needs_bufread = false,
     path = "/Users/scott/.local/share/nvim/site/pack/packer/opt/nvim-compe"
   },
+  ["nvim-dap"] = {
+    loaded = false,
+    needs_bufread = false,
+    path = "/Users/scott/.local/share/nvim/site/pack/packer/opt/nvim-dap"
+  },
   ["nvim-lspconfig"] = {
     loaded = false,
     needs_bufread = false,
@@ -199,7 +204,7 @@ _G.packer_plugins = {
   },
   ["telescope.nvim"] = {
     loaded = false,
-    needs_bufread = false,
+    needs_bufread = true,
     path = "/Users/scott/.local/share/nvim/site/pack/packer/opt/telescope.nvim"
   },
   ["trouble.nvim"] = {
@@ -223,11 +228,6 @@ _G.packer_plugins = {
     needs_bufread = true,
     path = "/Users/scott/.local/share/nvim/site/pack/packer/opt/vim-matchup"
   },
-  ["vim-maximizer"] = {
-    loaded = false,
-    needs_bufread = false,
-    path = "/Users/scott/.local/share/nvim/site/pack/packer/opt/vim-maximizer"
-  },
   ["vim-rooter"] = {
     loaded = false,
     needs_bufread = false,
@@ -237,11 +237,6 @@ _G.packer_plugins = {
     loaded = false,
     needs_bufread = false,
     path = "/Users/scott/.local/share/nvim/site/pack/packer/opt/vim-vsnip"
-  },
-  vimspector = {
-    loaded = false,
-    needs_bufread = false,
-    path = "/Users/scott/.local/share/nvim/site/pack/packer/opt/vimspector"
   }
 }
 
