@@ -8,145 +8,105 @@ if fn.empty(fn.glob(install_path)) > 0 then
 	execute("packadd packer.nvim")
 end
 
---- Check if a file or directory exists in this path
-local function require_plugin(plugin)
-	local plugin_prefix = fn.stdpath("data") .. "/site/pack/packer/opt/"
-
-	local plugin_path = plugin_prefix .. plugin .. "/"
-	--	print('test '..plugin_path)
-	local ok, err, code = os.rename(plugin_path, plugin_path)
-	if not ok then
-		if code == 13 then
-			-- Permission denied, but it exists
-			return true
-		end
-	end
-	--	print(ok, err, code)
-	if ok then
-		vim.cmd("packadd " .. plugin)
-	end
-	return ok, err, code
+local packer_ok, packer = pcall(require, "packer")
+if not packer_ok then
+	return
 end
 
-vim.cmd("autocmd BufWritePost plugins.lua PackerCompile") -- Auto compile when there are changes in plugins.lua
+packer.init({
+	git = { clone_timeout = 300 },
+	display = {
+		open_fn = function()
+			return require("packer.util").float({ border = "single" })
+		end,
+	},
+})
+
+vim.cmd("autocmd BufWritePost plugins.lua PackerCompile")
 
 return require("packer").startup(function(use)
 	-- Packer can manage itself as an optional plugin
 	use("wbthomason/packer.nvim")
 
 	-- TODO refactor all of this (for now it works, but yes I know it could be wrapped in a simpler function)
-	use({ "neovim/nvim-lspconfig", opt = true })
-	use({ "glepnir/lspsaga.nvim", opt = true })
-	use({ "kabouzeid/nvim-lspinstall", opt = true })
-	use({ "folke/trouble.nvim", opt = true })
-	use({ "sbdchd/neoformat", opt = true })
-	use({ "simrat39/symbols-outline.nvim", opt = true })
+	use({ "neovim/nvim-lspconfig" })
+	use({ "glepnir/lspsaga.nvim" })
+	use({ "kabouzeid/nvim-lspinstall" })
+	use({ "folke/trouble.nvim" })
+	use({ "sbdchd/neoformat" })
+	use({ "simrat39/symbols-outline.nvim" })
 
 	-- Telescope
-	use({ "nvim-lua/popup.nvim", opt = true })
-	use({ "nvim-lua/plenary.nvim", opt = true })
-	use({ "nvim-telescope/telescope.nvim", opt = true })
-	use({ "nvim-telescope/telescope-fzy-native.nvim", opt = true })
+	use({ "nvim-lua/popup.nvim" })
+	use({ "nvim-lua/plenary.nvim" })
+	use({
+		"nvim-telescope/telescope.nvim",
+		config = function()
+			require("lv-telescope").config()
+		end,
+	})
+	use({ "nvim-telescope/telescope-fzy-native.nvim" })
 
 	-- Debugging
-    use {"mfussenegger/nvim-dap", opt = true}
-	-- use({ "puremourning/vimspector", opt = true })
-	-- use({ "szw/vim-maximizer", opt = true })
-    -- use({ "Pocco81/DAPInstall.nvim", opt = true})
+	use({ "mfussenegger/nvim-dap" })
+	-- use({ "puremourning/vimspector" })
+	-- use({ "szw/vim-maximizer" })
+	-- use({ "Pocco81/DAPInstall.nvim"})
 
 	-- Autocomplete
-	use({ "hrsh7th/nvim-compe", opt = true })
-	use({ "hrsh7th/vim-vsnip", opt = true })
-	use({ "rafamadriz/friendly-snippets", opt = true })
+	use({ "hrsh7th/nvim-compe" })
+	use({ "hrsh7th/vim-vsnip" })
+	use({ "rafamadriz/friendly-snippets" })
 
 	-- Treesitter
 	use({ "nvim-treesitter/nvim-treesitter", run = ":TSUpdate" })
-	use({ "windwp/nvim-ts-autotag", opt = true })
-	use({ "andymass/vim-matchup", opt = true })
+	use({ "windwp/nvim-ts-autotag" })
+	use({ "andymass/vim-matchup" })
 
 	-- LSP
-	use({ "ambv/black", opt = true })
-	use({ "akinsho/flutter-tools.nvim", opt = true })
-	-- use {"mfussenegger/nvim-jdtls", opt = true}
+	use({ "ambv/black" })
+	use({ "akinsho/flutter-tools.nvim" })
+	-- use {"mfussenegger/nvim-jdtls"}
 
 	-- Explorer
-	-- use {"kyazdani42/nvim-tree.lua", opt = true}
+	use({
+		"kyazdani42/nvim-tree.lua",
+		-- event = "BufEnter",
+		-- cmd = "NvimTreeToggle",
+		config = function()
+			require("lv-nvimtree").config()
+		end,
+	})
 
-	-- use {'metakirby5/codi.vim', opt = true}
+	-- use {'metakirby5/codi.vim'}
 
 	-- Refactoring
 	use({
 		"ThePrimeagen/refactoring.nvim",
-		requires = {
-			opt = true,
-		},
 	})
 	-- Git
-	use({ "ThePrimeagen/git-worktree.nvim", opt = true })
-	use({ "tpope/vim-fugitive", opt = true })
-	use({ "windwp/nvim-autopairs", opt = true })
-	use({ "kevinhwang91/nvim-bqf", opt = true })
-	-- use {"lewis6991/gitsigns.nvim", opt = true}
-	-- use {'f-person/git-blame.nvim', opt = true}
+	use({ "ThePrimeagen/git-worktree.nvim" })
+	use({ "tpope/vim-fugitive" })
+	use({ "windwp/nvim-autopairs" })
+	use({ "kevinhwang91/nvim-bqf" })
+	use({ "lewis6991/gitsigns.nvim" })
+	-- use {'f-person/git-blame.nvim'}
 
 	-- Comments
-	use({ "terrortylor/nvim-comment", opt = true })
-	use({ "JoosepAlviste/nvim-ts-context-commentstring", opt = true })
+	use({ "terrortylor/nvim-comment" })
+	use({ "JoosepAlviste/nvim-ts-context-commentstring" })
 
 	-- Color
-	use({ "flazz/vim-colorschemes", opt = true })
-	use({ "rktjmp/lush.nvim", opt = true })
-	use({ "npxbr/gruvbox.nvim", opt = true })
-	-- use {"christianchiarulli/nvcode-color-schemes.vim", opt = true}
+	use({ "flazz/vim-colorschemes" })
+	-- use {"christianchiarulli/nvcode-color-schemes.vim"}
 
 	-- Icons
-	use({ "kyazdani42/nvim-web-devicons", opt = true })
+	use({ "kyazdani42/nvim-web-devicons" })
 
 	-- Status Line and Bufferline
-	use({ "hoob3rt/lualine.nvim", opt = true })
+	use({ "hoob3rt/lualine.nvim" })
 
 	-- Navigation
-	use({ "airblade/vim-rooter", opt = true })
-	use({ "ThePrimeagen/harpoon", opt = true })
-
-	require_plugin("nvim-lspconfig")
-	require_plugin("lspsaga.nvim")
-	require_plugin("nvim-lspinstall")
-	require_plugin("trouble.nvim")
-	require_plugin("friendly-snippets")
-	require_plugin("popup.nvim")
-	require_plugin("plenary.nvim")
-	require_plugin("telescope.nvim")
-	require_plugin("telescope-project.nvim")
-	require_plugin("nvim-compe")
-	require_plugin("vim-vsnip")
-	require_plugin("nvim-treesitter")
-	require_plugin("nvim-autopairs")
-	require_plugin("nvim-comment")
-	require_plugin("nvim-bqf")
-	require_plugin("nvim-web-devicons")
-	require_plugin("harpoon")
-	require_plugin("nvim-ts-context-commentstring")
-	require_plugin("vim-fugitive")
-	require_plugin("git-worktree.nvim")
-	require_plugin("vimspector")
-	require_plugin("vim-maximizer")
-	require_plugin("black")
-	require_plugin("flutter-tools.nvim")
-	require_plugin("vim-colorschemes")
-	require_plugin("neoformat")
-	require_plugin("lualine.nvim")
-	require_plugin("nvim-ts-autotag")
-	require_plugin("vim-matchup")
-	require_plugin("symbols-outline.nvim")
-	require_plugin("refactoring.nvim")
-	require_plugin("vim-rooter")
-    require_plugin("nvim-dap")
-    -- require_plugin("DAPInstall.nvim")
-	-- require_plugin("nvim-tree.lua")
-	-- require_plugin("gitsigns.nvim")
-	-- require_plugin("git-blame.nvim")
-	-- require_plugin("nvcode-color-schemes.vim")
-	-- require_plugin("nvim-jdtls")
-	-- require_plugin('codi.vim')
+	use({ "airblade/vim-rooter" })
+	use({ "ThePrimeagen/harpoon" })
 end)
