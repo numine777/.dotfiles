@@ -97,7 +97,8 @@ return require("packer").startup(function(use)
 	use({ "JoosepAlviste/nvim-ts-context-commentstring" })
 
 	-- Color
-	use({ "flazz/vim-colorschemes" })
+	-- use({ "flazz/vim-colorschemes" })
+	use({ "ellisonleao/gruvbox.nvim", requires = { "rktjmp/lush.nvim" } })
 	-- use {"christianchiarulli/nvcode-color-schemes.vim"}
 
 	-- Icons
