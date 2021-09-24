@@ -89,7 +89,14 @@ return require("packer").startup(function(use)
 	use({ "tpope/vim-fugitive" })
 	use({ "windwp/nvim-autopairs" })
 	use({ "kevinhwang91/nvim-bqf" })
-	use({ "lewis6991/gitsigns.nvim" })
+	use({
+		"lewis6991/gitsigns.nvim",
+		config = function()
+			require("lv-gitsigns").config()
+		end,
+		event = "BufRead",
+	})
+
 	-- use {'f-person/git-blame.nvim'}
 
 	-- Comments

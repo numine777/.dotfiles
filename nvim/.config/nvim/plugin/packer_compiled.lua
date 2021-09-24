@@ -86,8 +86,14 @@ _G.packer_plugins = {
     path = "/Users/scott/.local/share/nvim/site/pack/packer/start/git-worktree.nvim"
   },
   ["gitsigns.nvim"] = {
+    config = { "\27LJ\2\n:\0\0\3\0\3\0\0066\0\0\0'\2\1\0B\0\2\0029\0\2\0B\0\1\1K\0\1\0\vconfig\16lv-gitsigns\frequire\0" },
+    loaded = false,
+    needs_bufread = false,
+    path = "/Users/scott/.local/share/nvim/site/pack/packer/opt/gitsigns.nvim"
+  },
+  ["gruvbox.nvim"] = {
     loaded = true,
-    path = "/Users/scott/.local/share/nvim/site/pack/packer/start/gitsigns.nvim"
+    path = "/Users/scott/.local/share/nvim/site/pack/packer/start/gruvbox.nvim"
   },
   harpoon = {
     loaded = true,
@@ -100,6 +106,10 @@ _G.packer_plugins = {
   ["lualine.nvim"] = {
     loaded = true,
     path = "/Users/scott/.local/share/nvim/site/pack/packer/start/lualine.nvim"
+  },
+  ["lush.nvim"] = {
+    loaded = true,
+    path = "/Users/scott/.local/share/nvim/site/pack/packer/start/lush.nvim"
   },
   neoformat = {
     loaded = true,
@@ -187,10 +197,6 @@ _G.packer_plugins = {
     loaded = true,
     path = "/Users/scott/.local/share/nvim/site/pack/packer/start/trouble.nvim"
   },
-  ["vim-colorschemes"] = {
-    loaded = true,
-    path = "/Users/scott/.local/share/nvim/site/pack/packer/start/vim-colorschemes"
-  },
   ["vim-fugitive"] = {
     loaded = true,
     path = "/Users/scott/.local/share/nvim/site/pack/packer/start/vim-fugitive"
@@ -218,6 +224,13 @@ time([[Config for telescope.nvim]], false)
 time([[Config for nvim-tree.lua]], true)
 try_loadstring("\27LJ\2\n:\0\0\3\0\3\0\0066\0\0\0'\2\1\0B\0\2\0029\0\2\0B\0\1\1K\0\1\0\vconfig\16lv-nvimtree\frequire\0", "config", "nvim-tree.lua")
 time([[Config for nvim-tree.lua]], false)
+vim.cmd [[augroup packer_load_aucmds]]
+vim.cmd [[au!]]
+  -- Event lazy-loads
+time([[Defining lazy-load event autocommands]], true)
+vim.cmd [[au BufRead * ++once lua require("packer.load")({'gitsigns.nvim'}, { event = "BufRead *" }, _G.packer_plugins)]]
+time([[Defining lazy-load event autocommands]], false)
+vim.cmd("augroup END")
 if should_profile then save_profiles() end
 
 end)
