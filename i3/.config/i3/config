@@ -15,11 +15,11 @@ set $mod Mod4
 new_window pixel
 
 # i3-gaps
-gaps inner 0
+# gaps inner 0
 
 # Font for window titles. Will also be used by the bar unless a different font
 # is used in the bar {} block below.
-font pango:monospace 6
+font pango:monospace 10
 
 # This font is widely installed, provides lots of unicode glyphs, right-to-left
 # text rendering and scalability on retina/hidpi displays (thanks to pango).
@@ -49,10 +49,10 @@ bindsym XF86AudioMicMute exec --no-startup-id pactl set-source-mute @DEFAULT_SOU
 floating_modifier $mod
 
 # start a terminal
-bindsym $mod+Return exec alacritty
+bindsym $mod+Return exec i3-sensible-terminal
 
 # kill focused window
-bindsym $mod+Shift+q kill
+bindsym $mod+Shift+s kill
 
 # Start rofi
 bindsym $mod+d exec rofi -show drun -columns 3
@@ -192,14 +192,14 @@ bindsym $mod+r mode "resize"
 
 # custom shortcuts
 bindsym $mod+b exec brave-browser
-exec_always feh --bg-scale /home/scott/Documents/noon-wallpaper.jpg
+exec_always feh --bg-scale /home/scott/Downloads/wallpaper.png
 bindsym $mod+p move workspace to output right
 bindsym $mod+o move workspace to output left
 exec_always ~/.srceenlayout/externals.sh
 for_window [class="Android Studio"] move absolute position center
-exec_always --no-startup-id cd ~/.config/polybar && bash launch.sh
-# exec --no-startup-id nitrogen --restore; sleep 1; compton -b
-exec picom &
+# exec_always --no-startup-id cd ~/.config/polybar && bash launch.sh
+exec --no-startup-id nitrogen --restore; sleep 1; compton -b
+# exec picom &
 
 ###############################################
 # visual tweaks and stuff
@@ -227,3 +227,8 @@ bindsym $mod+y border none
 bindsym $mod+u border pixel 1
 bindsym $mod+i border normal
 
+# Start i3bar to display a workspace bar (plus the system information i3status
+# finds out, if available)
+bar {
+        status_command i3status
+}

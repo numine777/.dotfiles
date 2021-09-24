@@ -1,21 +1,14 @@
-# Enable Powerlevel10k instant prompt. Should stay close to the top of ~/.zshrc.
-# Initialization code that may require console input (password prompts, [y/n]
-# confirmations, etc.) must go above this block; everything else may go below.
-if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]; then
-  source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
-fi
-
 # If you come from bash you might have to change your $PATH.
 # export PATH=$HOME/bin:/usr/local/bin:$PATH
 
 # Path to your oh-my-zsh installation.
-export ZSH="/Users/scott/.oh-my-zsh"
+export ZSH="/home/parallels/.oh-my-zsh"
 
 # Set name of the theme to load --- if set to "random", it will
 # load a random theme each time oh-my-zsh is loaded, in which case,
 # to know which specific one was loaded, run: echo $RANDOM_THEME
 # See https://github.com/ohmyzsh/ohmyzsh/wiki/Themes
-ZSH_THEME="powerlevel10k/powerlevel10k"
+ZSH_THEME="robbyrussell"
 
 # Set list of themes to pick from when loading at random
 # Setting this variable when ZSH_THEME=random will cause zsh to load
@@ -71,7 +64,7 @@ ZSH_THEME="powerlevel10k/powerlevel10k"
 
 # Would you like to use another custom folder than $ZSH/custom?
 # ZSH_CUSTOM=/path/to/new-custom-folder
-ZSH_DISABLE_COMPFIX=true
+
 # Which plugins would you like to load?
 # Standard plugins can be found in $ZSH/plugins/
 # Custom plugins may be added to $ZSH_CUSTOM/plugins/
@@ -109,29 +102,5 @@ source $ZSH/oh-my-zsh.sh
 # Example aliases
 # alias zshconfig="mate ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
-alias ibrew="arch -x86_64 /usr/local/bin/brew"
-alias brew="/opt/homebrew/bin/brew"
-alias nvim="/opt/homebrew/bin/nvim"
+
 alias vim="nvim"
-alias getToken="python3 /Users/scott/work/adyton/generate_token.py"
-export PATH="$PATH:/opt/homebrew/bin"
-export PATH="/usr/local/opt/python@3.7/bin:$PATH"
-export PATH="/Users/scott/bin:$PATH"
-export PATH="/Users/scott/go/bin:$PATH"
-
-# To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
-[[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
-export PATH="/opt/homebrew/opt/openjdk@11/bin:$PATH"
-export AWS_REGION=us-east-1
-export PATH="$PATH:$HOME/bin/flutter/bin"
-export PATH="$PATH":"$HOME/.pub-cache/bin"
-export PATH="$PATH:$HOME/.cargo/bin"
-export PATH="$PATH:$HOME/Library/Android/sdk"
-export PATH="$PATH:$HOME/.local/bin"
-export ANDROID_SDK_ROOT="$HOME/Library/Android/sdk"
-
-function gam() { "/Users/scott/bin/gam/gam" "$@" ; }
-
-if [[ -f /usr/local/share/chtf/chtf.sh ]]; then
-    source /usr/local/share/chtf/chtf.sh
-fi

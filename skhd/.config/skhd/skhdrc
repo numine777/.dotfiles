@@ -116,6 +116,7 @@ ctrl + alt - d : yabai -m space --layout float
 
 # opens iTerm2
 cmd - return : "${HOME}"/bin/open-iterm2.sh
+cmd - b : open -na "Brave Browser" --args --new-window
 
 ctrl + shift - q : yabai -m window --close
 

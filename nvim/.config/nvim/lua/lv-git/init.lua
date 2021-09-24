@@ -1,6 +1,7 @@
 local Worktree = require("git-worktree")
 local Job = require("plenary.job")
 local Path = require("plenary.path")
+require("telescope").load_extension("git_worktree")
 
 vim.cmd 'nnoremap <leader>ga :Git fetch --all<CR>'
 vim.cmd 'nnoremap <leader>grum :Git rebase upstream/master<CR>'
