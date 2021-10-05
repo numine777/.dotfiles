@@ -67,6 +67,53 @@ M.git_branches = function()
 	})
 end
 
+local function set_background(content)
+    vim.fn.system(
+        "feh --bg-scale /home/scott/backgrounds \"'"
+            .. content
+            .. "'\""
+    )
+end
+
+local function select_background(prompt_bufnr, map)
+    local function set_the_background(close)
+        local content = require("telescope.actions.state").get_selected_entry(
+            prompt_bufnr
+        )
+        set_background(content.cwd .. "/" .. content.value)
+        if close then
+            require("telescope.actions").close(prompt_bufnr)
+        end
+    end
+
+    map("i", "<C-p>", function()
+        set_the_background()
+    end)
+
+    map("i", "<CR>", function()
+        set_the_background(true)
+    end)
+end
+
+local function image_selector(prompt, cwd)
+    return function()
+        require("telescope.builtin").find_files({
+            prompt_title = prompt,
+            cwd = cwd,
+
+            attach_mappings = function(prompt_bufnr, map)
+                select_background(prompt_bufnr, map)
+
+                -- Please continue mapping (attaching additional key maps):
+                -- Ctrl+n/p to move up and down the list.
+                return true
+            end,
+        })
+    end
+end
+
+M.anime_selector = image_selector("< Anime Bobs > ", "~/backgrounds")
+
 vim.cmd('nnoremap <leader>rr :lua require("lv-telescope").refactors()<CR>')
 vim.cmd('vnoremap <leader>rr :lua require("lv-telescope").refactors()<CR>')
 vim.cmd(
@@ -80,7 +127,7 @@ vim.cmd('nnoremap <leader>pb :lua require("telescope.builtin").buffers()<CR>')
 vim.cmd('nnoremap <leader>vh :lua require("telescope.builtin").help_tags()<CR>')
 vim.cmd('nnoremap <leader>vrc :lua require("lv-telescope").search_dotfiles()<CR>')
 vim.cmd('nnoremap <leader>va :lua require("lv-telescope").anime_selector()<CR>')
-vim.cmd('nnoremap <leader>vc :lua require("lv-telescope").chat_selector()<CR>')
+-- vim.cmd('nnoremap <leader>vc :lua require("lv-telescope").chat_selector()<CR>')
 vim.cmd('nnoremap <leader>gc :lua require("lv-telescope").git_branches()<CR>')
 vim.cmd('nnoremap <leader>gw :lua require("telescope").extensions.git_worktree.git_worktrees()<CR>')
 vim.cmd('nnoremap <leader>gm :lua require("telescope").extensions.git_worktree.create_git_worktree()<CR>')

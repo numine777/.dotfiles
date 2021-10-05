@@ -38,6 +38,7 @@ require("lspconfig").pyright.setup {
         typeCheckingMode = "basic",
         autoSearchPaths = true,
         useLibraryCodeForTypes = true,
+        stubPath = "",
       },
     },
   },

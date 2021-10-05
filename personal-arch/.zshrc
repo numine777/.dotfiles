@@ -115,6 +115,16 @@ source $ZSH/oh-my-zsh.sh
 
 export PATH="$PATH:/home/scott/.local/bin"
 export PATH="$PATH:/home/scott/go/bin"
+export PATH="$PATH:/home/scott/.android/"
+export ANDROID_SDK_ROOT="/home/scott/Android/Sdk"
+export ANDROID_HOME="/home/scott/Android/Sdk"
+export GRADLE_HOME="$HOME/.local/bin/gradle-6.9.1"
+export PATH="$PATH:$ANDROID_SDK_ROOT/emulator"
+export PATH="$PATH:$ANDROID_SDK_ROOT/tools"
+export PATH="$PATH:$ANDROID_SDK_ROOT/tools/bin"
+export PATH="$PATH:$ANDROID_SDK_ROOT/platform-tools"
+export PATH="$PATH:$GRADLE_HOME/bin"
+export PATH="$PATH:$HOME/bin/flutter/bin"
 
 alias luamake=/home/scott/lua-language-server/3rd/luamake/luamake
 
@@ -123,3 +133,5 @@ alias adyton=". /home/scott/scripts/ssh/mountAdyton.sh"
 alias polygrok=". /home/scott/scripts/ssh/mountMac.sh"
 alias vim="nvim"
 alias adytonVPN=". /home/scott/scripts/vpn/adytonVPN.sh"
+alias emulator="/home/scott/Android/Sdk/emulator/emulator"
+alias phone="emulator -avd Pixel_3a_API_30_x86 -dns-server 8.8.8.8"

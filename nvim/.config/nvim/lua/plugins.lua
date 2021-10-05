@@ -30,7 +30,7 @@ return require("packer").startup(function(use)
 
 	-- TODO refactor all of this (for now it works, but yes I know it could be wrapped in a simpler function)
 	use({ "neovim/nvim-lspconfig" })
-	use({ "glepnir/lspsaga.nvim" })
+	use({ "tami5/lspsaga.nvim" })
 	use({ "kabouzeid/nvim-lspinstall" })
 	use({ "folke/trouble.nvim" })
 	use({ "sbdchd/neoformat" })
@@ -54,7 +54,27 @@ return require("packer").startup(function(use)
 	-- use({ "Pocco81/DAPInstall.nvim"})
 
 	-- Autocomplete
-	use({ "hrsh7th/nvim-compe" })
+	-- use({ "hrsh7th/nvim-compe" })
+    use({
+      "hrsh7th/nvim-cmp",
+      config = function()
+        require("lv-cmp").setup()
+      end,
+      requires = {
+        "L3MON4D3/LuaSnip",
+        "saadparwaiz1/cmp_luasnip",
+        "hrsh7th/cmp-buffer",
+        "hrsh7th/cmp-nvim-lsp",
+        "hrsh7th/cmp-path",
+        "hrsh7th/cmp-nvim-lua",
+      },
+      run = function()
+        -- cmp's config requires cmp to be installed to run the first time
+        if not dvim.builtin.cmp then
+          require("lv-cmp").config()
+        end
+      end,
+    })
 	use({ "hrsh7th/vim-vsnip" })
 	use({ "rafamadriz/friendly-snippets" })
 
@@ -66,17 +86,24 @@ return require("packer").startup(function(use)
 	-- LSP
 	use({ "ambv/black" })
 	use({ "akinsho/flutter-tools.nvim" })
+    -- use({ "jose-elias-alvarez/null-ls.nvim",
+    --     config = function()
+    --         require("lsp.null-ls").config()
+    --         require("lspconfig")["null-ls"].setup()
+    --     end,
+    --     requires = {"nvim-lua/plenary.nvim", "neovim/nvim-lspconfig"}
+    -- })
 	-- use {"mfussenegger/nvim-jdtls"}
 
 	-- Explorer
-	use({
-		"kyazdani42/nvim-tree.lua",
-		-- event = "BufEnter",
-		-- cmd = "NvimTreeToggle",
-		config = function()
-			require("lv-nvimtree").config()
-		end,
-	})
+	-- use({
+	-- 	"kyazdani42/nvim-tree.lua",
+	-- 	-- event = "BufEnter",
+	-- 	-- cmd = "NvimTreeToggle",
+	-- 	config = function()
+	-- 		require("lv-nvimtree").config()
+	-- 	end,
+	-- })
 
 	-- use {'metakirby5/codi.vim'}
 
@@ -87,7 +114,16 @@ return require("packer").startup(function(use)
 	-- Git
 	use({ "ThePrimeagen/git-worktree.nvim" })
 	use({ "tpope/vim-fugitive" })
-	use({ "windwp/nvim-autopairs" })
+	-- use({ "windwp/nvim-autopairs" })
+    use({
+      "windwp/nvim-autopairs",
+      -- event = "InsertEnter",
+      after = "nvim-cmp",
+      config = function()
+        require("lv-autopairs").setup()
+      end,
+      -- disable = not dvim.builtin.autopairs.active,
+    })
 	use({ "kevinhwang91/nvim-bqf" })
 	use({
 		"lewis6991/gitsigns.nvim",
@@ -115,6 +151,6 @@ return require("packer").startup(function(use)
 	use({ "hoob3rt/lualine.nvim" })
 
 	-- Navigation
-	use({ "airblade/vim-rooter" })
+
 	use({ "ThePrimeagen/harpoon" })
 end)
