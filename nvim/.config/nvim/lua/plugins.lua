@@ -55,26 +55,26 @@ return require("packer").startup(function(use)
 
 	-- Autocomplete
 	-- use({ "hrsh7th/nvim-compe" })
-    use({
-      "hrsh7th/nvim-cmp",
-      config = function()
-        require("lv-cmp").setup()
-      end,
-      requires = {
-        "L3MON4D3/LuaSnip",
-        "saadparwaiz1/cmp_luasnip",
-        "hrsh7th/cmp-buffer",
-        "hrsh7th/cmp-nvim-lsp",
-        "hrsh7th/cmp-path",
-        "hrsh7th/cmp-nvim-lua",
-      },
-      run = function()
-        -- cmp's config requires cmp to be installed to run the first time
-        if not dvim.builtin.cmp then
-          require("lv-cmp").config()
-        end
-      end,
-    })
+	use({
+		"hrsh7th/nvim-cmp",
+		config = function()
+			require("lv-cmp").setup()
+		end,
+		requires = {
+			"L3MON4D3/LuaSnip",
+			"saadparwaiz1/cmp_luasnip",
+			"hrsh7th/cmp-buffer",
+			"hrsh7th/cmp-nvim-lsp",
+			"hrsh7th/cmp-path",
+			"hrsh7th/cmp-nvim-lua",
+		},
+		run = function()
+			-- cmp's config requires cmp to be installed to run the first time
+			if not dvim.builtin.cmp then
+				require("lv-cmp").config()
+			end
+		end,
+	})
 	use({ "hrsh7th/vim-vsnip" })
 	use({ "rafamadriz/friendly-snippets" })
 
@@ -86,13 +86,13 @@ return require("packer").startup(function(use)
 	-- LSP
 	use({ "ambv/black" })
 	use({ "akinsho/flutter-tools.nvim" })
-    -- use({ "jose-elias-alvarez/null-ls.nvim",
-    --     config = function()
-    --         require("lsp.null-ls").config()
-    --         require("lspconfig")["null-ls"].setup()
-    --     end,
-    --     requires = {"nvim-lua/plenary.nvim", "neovim/nvim-lspconfig"}
-    -- })
+	-- use({ "jose-elias-alvarez/null-ls.nvim",
+	--     config = function()
+	--         require("lsp.null-ls").config()
+	--         require("lspconfig")["null-ls"].setup()
+	--     end,
+	--     requires = {"nvim-lua/plenary.nvim", "neovim/nvim-lspconfig"}
+	-- })
 	-- use {"mfussenegger/nvim-jdtls"}
 
 	-- Explorer
@@ -115,15 +115,15 @@ return require("packer").startup(function(use)
 	use({ "ThePrimeagen/git-worktree.nvim" })
 	use({ "tpope/vim-fugitive" })
 	-- use({ "windwp/nvim-autopairs" })
-    use({
-      "windwp/nvim-autopairs",
-      -- event = "InsertEnter",
-      after = "nvim-cmp",
-      config = function()
-        require("lv-autopairs").setup()
-      end,
-      -- disable = not dvim.builtin.autopairs.active,
-    })
+	use({
+		"windwp/nvim-autopairs",
+		-- event = "InsertEnter",
+		after = "nvim-cmp",
+		config = function()
+			require("lv-autopairs").setup()
+		end,
+		-- disable = not dvim.builtin.autopairs.active,
+	})
 	use({ "kevinhwang91/nvim-bqf" })
 	use({
 		"lewis6991/gitsigns.nvim",
@@ -151,6 +151,8 @@ return require("packer").startup(function(use)
 	use({ "hoob3rt/lualine.nvim" })
 
 	-- Navigation
-
 	use({ "ThePrimeagen/harpoon" })
+
+	-- Scratch
+	use({ "mtth/scratch.vim" })
 end)

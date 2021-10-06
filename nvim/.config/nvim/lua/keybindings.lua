@@ -18,6 +18,7 @@ vim.cmd 'nnoremap <Leader>rp :resize 100<CR>'
 vim.cmd 'nnoremap <Leader>ee oif err != nil {<CR>log.Fatalf("%+v\\n", err)<CR>}<CR><esc>kkI<esc>'
 vim.cmd 'nnoremap <Leader>cpu a%" PRIu64 "<esc>'
 vim.cmd 'nnoremap <leader>s :%s/\\<<C-r><C-w>\\>/<C-r><C-w>/gI<Left><Left><Left>'
+vim.cmd 'nnoremap <leader>gs :Scratch<CR>'
 vim.cmd "vnoremap J :m '>+1<CR>gv=gv"
 vim.cmd "vnoremap K :m '<-2<CR>gv=gv"
 
