@@ -1,3 +1,4 @@
+CACHE_PATH = vim.fn.stdpath('cache')
 --[[
 lvim is the global options object
 
@@ -11,7 +12,7 @@ an executable
 -- general
 lvim.log.level = "warn"
 lvim.format_on_save = true
-lvim.colorscheme = "onedarker"
+lvim.colorscheme = "gruvbox"
 vim.opt.relativenumber = true
 
 -- keymappings [view all the defaults by pressing <leader>Lk]
@@ -83,10 +84,33 @@ lvim.builtin.treesitter.highlight.enabled = true
 --   --Enable completion triggered by <c-x><c-o>
 --   buf_set_option("omnifunc", "v:lua.vim.lsp.omnifunc")
 -- end
+local root_files = {
+	"setup.py",
+	"pyproject.toml",
+	"setup.cfg",
+	"requirements.txt",
+	".git",
+	"BUILD.bazel",
+	"package.json",
+	"pubspec.yaml",
+}
+
+-- local util = require("lspconfig/util")
+-- lvim.lsp.on_attach_callback = function(client, bufnr)
+-- 	local function buf_set_option(...)
+-- 		vim.api.nvim_buf_set_option(bufnr, ...)
+-- 	end
+-- 	local root_pattern = function()
+-- 		return util.root_pattern(root_files)
+-- 	end
+-- 	buf_set_option("setup.root_dir", root_pattern())
+-- end
+--
 -- you can overwrite the null_ls setup table (useful for setting the root_dir function)
--- lvim.lsp.null_ls.setup = {
---   root_dir = require("lspconfig").util.root_pattern("Makefile", ".git", "node_modules"),
--- }
+lvim.lsp.null_ls.setup = {
+	root_dir = require("lspconfig").util.root_pattern(root_files),
+}
+lvim.format_on_save = false
 -- or if you need something more advanced
 -- lvim.lsp.null_ls.setup.root_dir = function(fname)
 --   if vim.bo.filetype == "javascript" then
@@ -111,6 +135,13 @@ lvim.builtin.treesitter.highlight.enabled = true
 --     exe = "flake8",
 --   }
 -- }
+lvim.lang.python.formatters = { { exe = "black" } }
+lvim.lang.python.linters = { { exe = "flake8" } }
+
+lvim.lang.lua.formatters = { { exe = "stylua" } }
+
+lvim.lang.typescript.formatters = { { exe = "prettier" } }
+lvim.lang.typescript.linters = { { exe = "eslint" } }
 
 -- Additional Plugins
 -- lvim.plugins = {
@@ -120,10 +151,6 @@ lvim.builtin.treesitter.highlight.enabled = true
 --       cmd = "TroubleToggle",
 --     },
 -- }
-
--- Autocommands (https://neovim.io/doc/user/autocmd.html)
--- lvim.autocommands.custom_groups = {
---   { "BufWinEnter", "*.lua", "setlocal ts=8 sw=8" },
 lvim.plugins = {
 	{
 		"akinsho/flutter-tools.nvim",
@@ -131,23 +158,22 @@ lvim.plugins = {
 		"tpope/vim-fugitive",
 		"ThePrimeagen/harpoon",
 		{ "npxbr/gruvbox.nvim", requires = { "rktjmp/lush.nvim" } },
+        "mtth/scratch.vim",
 	},
 }
+
+-- Autocommands (https://neovim.io/doc/user/autocmd.html)
+-- lvim.autocommands.custom_groups = {
+--   { "BufWinEnter", "*.lua", "setlocal ts=8 sw=8" },
 -- Autocommands (https://neovim.io/doc/user/autocmd.html)
 -- lvim.autocommands.custom_groups = {
 --   { "BufWinEnter", "*.lua", "setlocal ts=8 sw=8" },
 -- }
 
 -- Additional Leader bindings for WhichKey
-lvim.builtin.which_key.mappings["G"] = {
-	name = "+Custom Git Keys",
-	w = { "<cmd>lua require('telescope').extensions.git_worktree.git_worktrees()<cr>", "View Git Worktrees" },
-	W = { "<cmd>lua require('telescope').extensions.git_worktree.create_git_worktree()<cr>", "New Git Worktree" },
-}
-
 lvim.builtin.which_key.mappings["H"] = {
 	name = "+Harpoon",
-	a = { "<cmd>lua require('harpoon.mark').add_file()<cr>", "Add File" },
+	-- a = { "<cmd>lua require('harpoon.mark').add_file()<cr>", "Add File" },
 	u = { "<cmd>lua require('harpoon.term').gotoTerminal(1)<cr>", "Go to Terminal 1" },
 	e = { "<cmd>lua require('harpoon.term').gotoTerminal(2)<cr>", "Go to Terminal 2" },
 	-- o = {"<cmd>lua require('harpoon.term').sendCommand(1, 1)<cr>", "Send Command 1"},
@@ -165,60 +191,75 @@ require("harpoon").setup({
 	nav_first_in_list = true,
 })
 
-vim.cmd([[
-  nnoremap <C-e> :lua require("harpoon.ui").toggle_quick_menu()<CR>
-  
-  nnoremap <C-f> :lua require("harpoon.ui").nav_file(1)<CR>
-  nnoremap <C-g> :lua require("harpoon.ui").nav_file(2)<CR>
-  nnoremap <C-c> :lua require("harpoon.ui").nav_file(3)<CR>
-  nnoremap <C-s> :lua require("harpoon.ui").nav_file(4)<CR>
-]])
+-- vim.cmd([[
+--   nnoremap <C-e> :lua require("harpoon.ui").toggle_quick_menu()<CR>
+--
+--   nnoremap <C-f> :lua require("harpoon.ui").nav_file(1)<CR>
+--   nnoremap <C-g> :lua require("harpoon.ui").nav_file(2)<CR>
+--   nnoremap <C-c> :lua require("harpoon.ui").nav_file(3)<CR>
+--   nnoremap <C-s> :lua require("harpoon.ui").nav_file(4)<CR>
+-- ]])
 vim.cmd("tnoremap <Esc> <C-\\><C-n>")
+vim.g.scratch_persistence_file=CACHE_PATH .. "/.vim/scratch_file"
 require("telescope").load_extension("git_worktree")
 require("telescope").load_extension("flutter")
 
--- local root_files = {
---     'setup.py',
---     'pyproject.toml',
---     'setup.cfg',
---     'requirements.txt',
---     '.git',
---     'BUILD.bazel',
--- }
--- local util = require 'lspconfig/util'
--- lvim.lang.python.lsp.setup.root_dir = function(filename)
---       return util.root_pattern(unpack(root_files))(filename) or
---               util.path.dirname(filename)
---       end
-
-lvim.lang.python.formatters = { { exe = "black" } }
-lvim.lang.python.linters = { { exe = "pylint" } }
--- lvim.lang.python.lsp.on_attach=nil
-
-lvim.lang.lua.formatters = { { exe = "stylua" } }
-
-lvim.lang.typescript.formatters = { { exe = "prettier" } }
-lvim.lang.typescript.linters = { { exe = "eslint" } }
-
--- local dart_capabilities = vim.lsp.protocol.make_client_capabilities()
--- dart_capabilities.textDocument.codeAction = {
---   dynamicRegistration = false;
---       codeActionLiteralSupport = {
---           codeActionKind = {
---               valueSet = {
---                  "",
---                  "quickfix",
---                  "refactor",
---                  "refactor.extract",
---                  "refactor.inline",
---                  "refactor.rewrite",
---                  "source",
---                  "source.organizeImports",
---               };
---           };
---       };
--- }
-
--- lvim.lang.dart.lsp.setup.capabilities = dart_capabilities
--- lvim.lang.dart.lsp.setup.cmd = { "dart", "/Users/scott/bin/flutter/bin/cache/dart-sdk/bin/snapshots/analysis_server.dart.snapshot", "--lsp" }
--- lvim.lang.dart.linters = {"dart", "/Users/scott/bin/flutter/bin/cache/dart-sdk/bin/snapshots/analysis_server.dart.snapshot"}
+-- add your own keymapping
+-- lvim.keys.normal_mode["<C-s>"] = ":w<cr>"
+lvim.keys.normal_mode["<C-e>"] = ":lua require('harpoon.ui').toggle_quick_menu()<CR>"
+lvim.keys.normal_mode["<C-h>"] = ":lua require('harpoon.ui').nav_file(1)<CR>"
+lvim.keys.normal_mode["<C-t>"] = ":lua require('harpoon.ui').nav_file(2)<CR>"
+lvim.keys.normal_mode["<C-n>"] = ":lua require('harpoon.ui').nav_file(3)<CR>"
+lvim.keys.normal_mode["<C-s>"] = ":lua require('harpoon.ui').nav_file(4)<CR>"
+lvim.builtin.which_key.mappings["h"] = { ":wincmd h<cr>", "Window left" }
+lvim.builtin.which_key.mappings["j"] = { ":wincmd j<cr>", "Window down" }
+lvim.builtin.which_key.mappings["k"] = { ":wincmd k<cr>", "Window up" }
+lvim.builtin.which_key.mappings["l"] = { ":wincmd l<cr>", "Window right" }
+lvim.builtin.which_key.mappings["a"] = { "<cmd>lua require('harpoon.mark').add_file()<cr>", "Harpoon Add File" }
+lvim.builtin.which_key.mappings["S"] = { ":Scratch<CR>", "Scratch" }
+lvim.builtin.which_key.mappings["g"]["g"] = { ":G<cr>", "Fugitive" }
+lvim.builtin.which_key.mappings["g"]["w"] = {
+	"<cmd>lua require('telescope').extensions.git_worktree.git_worktrees()<cr>",
+	"View Git Worktrees",
+}
+lvim.builtin.which_key.mappings["g"]["m"] = {
+	"<cmd>lua require('telescope').extensions.git_worktree.create_git_worktree()<cr>",
+	"New Git Worktree",
+}
+lvim.builtin.which_key.mappings["v"] = {
+	name = "LSP",
+	a = { "<cmd>lua require('core.telescope').code_actions()<cr>", "Code Action" },
+	d = {
+		"<cmd>Telescope lsp_document_diagnostics<cr>",
+		"Document Diagnostics",
+	},
+	w = {
+		"<cmd>Telescope lsp_workspace_diagnostics<cr>",
+		"Workspace Diagnostics",
+	},
+	f = { "<cmd>lua vim.lsp.buf.formatting()<cr>", "Format" },
+	i = { "<cmd>LspInfo<cr>", "Info" },
+	I = { "<cmd>LspInstallInfo<cr>", "Installer Info" },
+	j = {
+		"<cmd>lua vim.lsp.diagnostic.goto_next({popup_opts = {border = lvim.lsp.popup_border}})<cr>",
+		"Next Diagnostic",
+	},
+	k = {
+		"<cmd>lua vim.lsp.diagnostic.goto_prev({popup_opts = {border = lvim.lsp.popup_border}})<cr>",
+		"Prev Diagnostic",
+	},
+	l = { "<cmd>lua vim.lsp.codelens.run()<cr>", "CodeLens Action" },
+	p = {
+		name = "Peek",
+		d = { "<cmd>lua require('lsp.peek').Peek('definition')<cr>", "Definition" },
+		t = { "<cmd>lua require('lsp.peek').Peek('typeDefinition')<cr>", "Type Definition" },
+		i = { "<cmd>lua require('lsp.peek').Peek('implementation')<cr>", "Implementation" },
+	},
+	q = { "<cmd>lua vim.lsp.diagnostic.set_loclist()<cr>", "Quickfix" },
+	r = { "<cmd>lua vim.lsp.buf.rename()<cr>", "Rename" },
+	s = { "<cmd>Telescope lsp_document_symbols<cr>", "Document Symbols" },
+	S = {
+		"<cmd>Telescope lsp_dynamic_workspace_symbols<cr>",
+		"Workspace Symbols",
+	},
+}

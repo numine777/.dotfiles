@@ -18,6 +18,7 @@ vim.opt.wrap = false
 vim.opt.swapfile = false
 vim.opt.backup = false
 vim.opt.undodir=CACHE_PATH .. "/.vim/undodir"
+vim.g.scratch_persistence_file=CACHE_PATH .. "/.vim/scratch_file"
 vim.opt.undofile = true
 vim.opt.incsearch = true
 vim.opt.termguicolors = true

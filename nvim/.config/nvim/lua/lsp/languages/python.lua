@@ -24,13 +24,13 @@ require("lspconfig").pyright.setup {
               util.path.dirname(filename)
       end,
   on_attach = require("lsp").common_on_attach,
-  handlers = {
-    ["textDocument/publishDiagnostics"] = vim.lsp.with(vim.lsp.diagnostic.on_publish_diagnostics, {
-      virtual_text = { spacing = 0, prefix = "" },
-      underline = true,
-      update_in_insert = true,
-    }),
-  },
+  -- handlers = {
+  --   ["textDocument/publishDiagnostics"] = vim.lsp.with(vim.lsp.diagnostic.on_publish_diagnostics, {
+  --     virtual_text = { spacing = 0, prefix = "" },
+  --     underline = true,
+  --     update_in_insert = true,
+  --   }),
+  -- },
   settings = {
     rootMarkers = { ".git/", "requirements.txt", "BUILD.bazel" },
     python = {
