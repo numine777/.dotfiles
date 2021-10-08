@@ -13,6 +13,7 @@ lvim.leader = "space"
 -- After changing plugin config exit and reopen LunarVim, Run :PackerInstall :PackerCompile
 lvim.builtin.dashboard.active = true
 lvim.builtin.terminal.active = true
+lvim.builtin.autopairs.active = true
 lvim.builtin.terminal.open_mapping = [[<c-\>]]
 lvim.builtin.nvimtree.setup.view.side = "left"
 lvim.builtin.nvimtree.show_icons.git = 1
