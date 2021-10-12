@@ -192,13 +192,18 @@ bindsym $mod+r mode "resize"
 
 # custom shortcuts
 bindsym $mod+b exec brave
-exec_always feh --bg-scale /home/scott/Documents/noon-wallpaper.jpg
+exec_always feh --bg-scale /home/scott/backgrounds/yellow_red_blue.png
 bindsym $mod+p move workspace to output right
 bindsym $mod+o move workspace to output left
 exec_always ~/.srceenlayout/dualExternals.sh
 for_window [class="Android Studio"] move absolute position center
 exec_always --no-startup-id cd ~/.config/polybar && bash launch.sh
 exec --no-startup-id nitrogen --restore; sleep 1; compton -b
+
+bindsym $mod+Shift+f exec flameshot gui
+bindsym $mod+Ctrl+f exec flameshot full -c
+bindsym $mod+Mod1+f exec flameshot screen -c
+
 # exec picom &
 
 ###############################################

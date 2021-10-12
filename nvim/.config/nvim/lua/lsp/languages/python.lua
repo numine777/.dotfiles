@@ -32,7 +32,6 @@ require("lspconfig").pyright.setup {
   --   }),
   -- },
   settings = {
-    rootMarkers = { ".git/", "requirements.txt", "BUILD.bazel" },
     python = {
       analysis = {
         typeCheckingMode = "basic",

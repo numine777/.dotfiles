@@ -29,7 +29,7 @@ vim.g.isfname = "+=@-@"
 vim.opt.splitbelow = true
 vim.opt.splitright = true
 vim.opt.relativenumber = true
-vim.opt.clipboard = "unnamedplus" -- allows neovim to access the system clipboard
+-- vim.opt.clipboard = "unnamedplus" -- allows neovim to access the system clipboard
 
 -- Give more space for displaying messages.
 vim.g.cmdheight=2

@@ -114,15 +114,12 @@ return require("packer").startup(function(use)
 	-- Git
 	use({ "ThePrimeagen/git-worktree.nvim" })
 	use({ "tpope/vim-fugitive" })
-	-- use({ "windwp/nvim-autopairs" })
 	use({
 		"windwp/nvim-autopairs",
-		-- event = "InsertEnter",
 		after = "nvim-cmp",
 		config = function()
 			require("lv-autopairs").setup()
 		end,
-		-- disable = not dvim.builtin.autopairs.active,
 	})
 	use({ "kevinhwang91/nvim-bqf" })
 	use({

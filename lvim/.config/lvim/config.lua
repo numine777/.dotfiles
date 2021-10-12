@@ -1,13 +1,14 @@
-CACHE_PATH = vim.fn.stdpath('cache')
+CACHE_PATH = vim.fn.stdpath("cache")
 
 -- general
 lvim.log.level = "warn"
 lvim.format_on_save = true
 lvim.colorscheme = "gruvbox"
+lvim.transparent_window = true
 vim.opt.relativenumber = true
+vim.opt.clipboard = "unnamed"
 
 lvim.leader = "space"
-
 
 -- TODO: User Config for predefined plugins
 -- After changing plugin config exit and reopen LunarVim, Run :PackerInstall :PackerCompile
@@ -66,8 +67,8 @@ lvim.plugins = {
 		"ThePrimeagen/git-worktree.nvim",
 		"tpope/vim-fugitive",
 		"ThePrimeagen/harpoon",
-    "mtth/scratch.vim",
-    "Shatur/neovim-ayu",
+		"mtth/scratch.vim",
+		"Shatur/neovim-ayu",
 		{ "npxbr/gruvbox.nvim", requires = { "rktjmp/lush.nvim" } },
 	},
 }
@@ -149,8 +150,7 @@ require("harpoon").setup({
 	nav_first_in_list = true,
 })
 
-vim.cmd("tnoremap <Esc> <C-\\><C-n>")
-vim.g.scratch_persistence_file=CACHE_PATH .. "/.vim/scratch_file"
+vim.g.scratch_persistence_file = CACHE_PATH .. "/.vim/scratch_file"
 require("telescope").load_extension("git_worktree")
 require("telescope").load_extension("flutter")
 
@@ -161,6 +161,9 @@ lvim.keys.normal_mode["<C-n>"] = ":lua require('harpoon.ui').nav_file(3)<CR>"
 lvim.keys.normal_mode["<C-s>"] = ":lua require('harpoon.ui').nav_file(4)<CR>"
 lvim.keys.normal_mode["<C-j>"] = ":lprev<CR>"
 lvim.keys.normal_mode["<C-k>"] = ":lnext<CR>"
+lvim.keys.term_mode["<Esc>"] = "<C-\\><C-n>"
+lvim.builtin.which_key.mappings["y"] = { '"+y', "Yank to clipboard" }
+lvim.builtin.which_key.mappings["p"] = { '"+p', "Put from clipboard" }
 lvim.builtin.which_key.mappings["h"] = { ":wincmd h<cr>", "Window left" }
 lvim.builtin.which_key.mappings["j"] = { ":wincmd j<cr>", "Window down" }
 lvim.builtin.which_key.mappings["k"] = { ":wincmd k<cr>", "Window up" }
@@ -189,6 +192,15 @@ lvim.builtin.which_key.mappings["t"] = {
 lvim.builtin.which_key.mappings["F"] = {
 	name = "+Flutter",
 	c = { "<cmd>lua require('telescope').extensions.flutter.commands()<cr>", "View Flutter Commands" },
+}
+lvim.builtin.which_key.mappings["P"] = {
+	name = "Packer",
+	c = { "<cmd>PackerCompile<cr>", "Compile" },
+	i = { "<cmd>PackerInstall<cr>", "Install" },
+	r = { "<cmd>lua require('utils').reload_lv_config()<cr>", "Reload" },
+	s = { "<cmd>PackerSync<cr>", "Sync" },
+	S = { "<cmd>PackerStatus<cr>", "Status" },
+	u = { "<cmd>PackerUpdate<cr>", "Update" },
 }
 lvim.builtin.which_key.mappings["v"] = {
 	name = "LSP",
@@ -305,4 +317,3 @@ lvim.builtin.which_key.mappings["v"] = {
 -- lvim.autocommands.custom_groups = {
 --   { "BufWinEnter", "*.lua", "setlocal ts=8 sw=8" },
 -- }
-
