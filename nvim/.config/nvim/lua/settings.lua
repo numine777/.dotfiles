@@ -1,6 +1,6 @@
-CONFIG_PATH = vim.fn.stdpath('config')
-DATA_PATH = vim.fn.stdpath('data')
-CACHE_PATH = vim.fn.stdpath('cache')
+CONFIG_PATH = vim.fn.stdpath("config")
+DATA_PATH = vim.fn.stdpath("data")
+CACHE_PATH = vim.fn.stdpath("cache")
 vim.env.DOTFILES = CONFIG_PATH
 
 vim.g.mapleader = " "
@@ -8,23 +8,23 @@ vim.opt.guicursor = ""
 vim.opt.hlsearch = false
 vim.opt.hidden = true
 vim.opt.errorbells = false
-vim.opt.tabstop=4
-vim.opt.softtabstop=4
-vim.opt.shiftwidth=4
+vim.opt.tabstop = 4
+vim.opt.softtabstop = 4
+vim.opt.shiftwidth = 4
 vim.opt.expandtab = true
 vim.opt.smartindent = true
 vim.opt.nu = true
 vim.opt.wrap = false
 vim.opt.swapfile = false
 vim.opt.backup = false
-vim.opt.undodir=CACHE_PATH .. "/.vim/undodir"
-vim.g.scratch_persistence_file=CACHE_PATH .. "/.vim/scratch_file"
+vim.opt.undodir = CACHE_PATH .. "/.vim/undodir"
+vim.g.scratch_persistence_file = CACHE_PATH .. "/.vim/scratch_file"
 vim.opt.undofile = true
 vim.opt.incsearch = true
 vim.opt.termguicolors = true
-vim.opt.scrolloff=8
+vim.opt.scrolloff = 8
 vim.opt.showmode = false
-vim.opt.signcolumn="yes"
+vim.opt.signcolumn = "yes"
 vim.g.isfname = "+=@-@"
 vim.opt.splitbelow = true
 vim.opt.splitright = true
@@ -32,16 +32,17 @@ vim.opt.relativenumber = true
 -- vim.opt.clipboard = "unnamedplus" -- allows neovim to access the system clipboard
 
 -- Give more space for displaying messages.
-vim.g.cmdheight=2
+vim.g.cmdheight = 2
 
 -- Having longer updatetime (default is 4000 ms = 4 s) leads to noticeable
 -- delays and poor user experience.
-vim.opt.updatetime=50
+vim.opt.updatetime = 50
 
 -- Don't pass messages to |ins-completion-menu|.
 vim.g.shortmess = "+=c"
 
-vim.opt.colorcolumn="99999"
+vim.opt.colorcolumn = "99999"
+-- vim.opt.guibg="None"
 
 -- vim.g.wildmode = "longest,list,full"
 -- vim.g.wildmenu = true
@@ -56,6 +57,13 @@ vim.opt.colorcolumn="99999"
 vim.g.netrw_browse_split = 0
 vim.g.netrw_banner = 0
 vim.g.netrw_winsize = 25
-vim.g.netrw_localrmdir='rm -rf'
+vim.g.netrw_localrmdir = "rm -rf"
 
 vim.g.colors_name = "gruvbox"
+vim.cmd("au ColorScheme * hi Normal ctermbg=none guibg=none")
+vim.cmd("au ColorScheme * hi SignColumn ctermbg=none guibg=none")
+vim.cmd("au ColorScheme * hi NormalNC ctermbg=none guibg=none")
+vim.cmd("au ColorScheme * hi MsgArea ctermbg=none guibg=none")
+vim.cmd("au ColorScheme * hi TelescopeBorder ctermbg=none guibg=none")
+vim.cmd("au ColorScheme * hi NvimTreeNormal ctermbg=none guibg=none")
+vim.cmd("let &fcs='eob: '")

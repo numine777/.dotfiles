@@ -134,7 +134,6 @@ require("flutter-tools").setup({
 		auto_open = false, -- if true this will open the outline automatically when it is first populated
 	},
 	lsp = {
-		on_attach = require("lsp").common_on_attach,
 		capabilities = dart_capabilities, -- e.g. lsp_status capabilities
 		--- OR you can specify a function to deactivate or change or control how the config is created
 		settings = {
