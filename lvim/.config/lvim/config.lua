@@ -5,6 +5,8 @@ lvim.log.level = "warn"
 lvim.format_on_save = true
 lvim.colorscheme = "gruvbox"
 lvim.transparent_window = true
+lvim.builtin.nvimtree.ignore = {}
+lvim.builtin.nvimtree.hide_dotfiles = 0
 vim.opt.relativenumber = true
 vim.opt.clipboard = "unnamed"
 
