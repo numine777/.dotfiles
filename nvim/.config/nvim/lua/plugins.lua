@@ -96,14 +96,14 @@ return require("packer").startup(function(use)
 	-- use {"mfussenegger/nvim-jdtls"}
 
 	-- Explorer
-	-- use({
-	-- 	"kyazdani42/nvim-tree.lua",
-	-- 	-- event = "BufEnter",
-	-- 	-- cmd = "NvimTreeToggle",
-	-- 	config = function()
-	-- 		require("lv-nvimtree").config()
-	-- 	end,
-	-- })
+	use({
+		"kyazdani42/nvim-tree.lua",
+		-- event = "BufEnter",
+		-- cmd = "NvimTreeToggle",
+		config = function()
+			require("lv-nvimtree").setup()
+		end,
+	})
 
 	-- use {'metakirby5/codi.vim'}
 

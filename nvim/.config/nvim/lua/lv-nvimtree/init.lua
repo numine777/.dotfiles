@@ -1,74 +1,81 @@
 local M = {}
-local nvim_tree_config = require("nvim-tree.config")
---
+-- local Log = require "core.log"
+
 M.config = function()
-  local g = vim.g
-
-  vim.o.termguicolors = true
-
-  g.nvim_tree_side = "left"
-  g.nvim_tree_width = 50
-  -- g.nvim_tree_ignore = { ".git", "node_modules", ".cache" }
-  g.nvim_tree_auto_open = 1
-  g.nvim_tree_auto_close = 0
-  g.nvim_tree_quit_on_open = 0
-  g.nvim_tree_follow = 1
-  g.nvim_tree_indent_markers = 1
-  g.nvim_tree_hide_dotfiles = 1
-  g.nvim_tree_git_hl = 1
-  g.nvim_tree_root_folder_modifier = ":t"
-  g.nvim_tree_tab_open = 0
-  g.nvim_tree_allow_resize = 1
-  g.nvim_tree_lsp_diagnostics = 1
-  g.nvim_tree_auto_ignore_ft = { "startify", "dashboard" }
-  g.nvim_tree_disable_netrw = 0
-
-  g.nvim_tree_show_icons = {
-    git = 1,
-    folders = 1,
-    files = 1,
-    folder_arrows = 1,
-  }
-
-  vim.g.nvim_tree_icons = {
-    default = "",
-    symlink = "",
-    git = {
-      unstaged = "",
-      staged = "S",
-      unmerged = "",
-      renamed = "➜",
-      deleted = "",
-      untracked = "U",
-      ignored = "◌",
+  dvim.builtin.treesitter = {
+    on_config_done = nil,
+    ensure_installed = {}, -- one of "all", "maintained" (parsers with maintainers), or a list of languages
+    ignore_install = {},
+    matchup = {
+      enable = false, -- mandatory, false will disable the whole extension
+      -- disable = { "c", "ruby" },  -- optional, list of language that will be disabled
     },
-    folder = {
-      default = "",
-      open = "",
-      empty = "",
-      empty_open = "",
-      symlink = "",
+    highlight = {
+      enable = true, -- false will disable the whole extension
+      additional_vim_regex_highlighting = true,
+      disable = { "latex" },
     },
-  }
-  local tree_cb = nvim_tree_config.nvim_tree_callback
-
-  vim.g.nvim_tree_bindings = {
-    { key = { "l", "<CR>", "o" }, cb = tree_cb "edit" },
-    { key = "h", cb = tree_cb "close_node" },
-    { key = "v", cb = tree_cb "vsplit" },
+    context_commentstring = {
+      enable = false,
+      config = { css = "// %s" },
+    },
+    -- indent = {enable = true, disable = {"python", "html", "javascript"}},
+    -- TODO seems to be broken
+    indent = { enable = true, disable = { "yaml" } },
+    autotag = { enable = false },
+    textobjects = {
+      swap = {
+        enable = false,
+        -- swap_next = textobj_swap_keymaps,
+      },
+      -- move = textobj_move_keymaps,
+      select = {
+        enable = false,
+        -- keymaps = textobj_sel_keymaps,
+      },
+    },
+    textsubjects = {
+      enable = false,
+      keymaps = { ["."] = "textsubjects-smart", [";"] = "textsubjects-big" },
+    },
+    playground = {
+      enable = false,
+      disable = {},
+      updatetime = 25, -- Debounced time for highlighting nodes in the playground from source code
+      persist_queries = false, -- Whether the query persists across vim sessions
+      keybindings = {
+        toggle_query_editor = "o",
+        toggle_hl_groups = "i",
+        toggle_injected_languages = "t",
+        toggle_anonymous_nodes = "a",
+        toggle_language_display = "I",
+        focus_language = "f",
+        unfocus_language = "F",
+        update = "R",
+        goto_node = "<cr>",
+        show_help = "?",
+      },
+    },
+    rainbow = {
+      enable = false,
+      extended_mode = true, -- Highlight also non-parentheses delimiters, boolean or table: lang -> boolean
+      max_file_lines = 1000, -- Do not enable for files with more than 1000 lines, int
+    },
   }
 end
 
-local view_status_ok, view = pcall(require, "nvim-tree.view")
-if not view_status_ok then
-  return
-end
-M.toggle_tree = function()
-  if view.win_open() then
-    require("nvim-tree").close()
-  else
-    require("nvim-tree").find_file(true)
+M.setup = function()
+  local status_ok, treesitter_configs = pcall(require, "nvim-treesitter.configs")
+  if not status_ok then
+    -- Log:get_default().error "Failed to load nvim-treesitter.configs"
+    return
+  end
+
+  treesitter_configs.setup(dvim.builtin.treesitter)
+
+  if dvim.builtin.treesitter.on_config_done then
+    dvim.builtin.treesitter.on_config_done(treesitter_configs)
   end
 end
---
+
 return M

@@ -4,6 +4,7 @@ local builtins = {
     "lv-cmp",
     "lv-autopairs",
     -- "lsp.null-ls",
+    "lv-nvimtree",
 }
 
 function M.config(config)
