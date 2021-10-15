@@ -12,10 +12,10 @@ function _G.join_paths(...)
   return result
 end
 
----Get the full path to `$LUNARVIM_RUNTIME_DIR`
+---Get the full path to `$DOOMVIM_RUNTIME_DIR`
 ---@return string
 function _G.get_runtime_dir()
-  local dvim_runtime_dir = os.getenv "LUNARVIM_RUNTIME_DIR"
+  local dvim_runtime_dir = os.getenv "DOOMVIM_RUNTIME_DIR"
   if not dvim_runtime_dir then
     -- when nvim is used directly
     return vim.fn.stdpath "config"
@@ -23,30 +23,30 @@ function _G.get_runtime_dir()
   return dvim_runtime_dir
 end
 
----Get the full path to `$LUNARVIM_CONFIG_DIR`
+---Get the full path to `$DOOMVIM_CONFIG_DIR`
 ---@return string
 function _G.get_config_dir()
-  local dvim_config_dir = os.getenv "LUNARVIM_CONFIG_DIR"
+  local dvim_config_dir = os.getenv "DOOMVIM_CONFIG_DIR"
   if not dvim_config_dir then
     return vim.fn.stdpath "config"
   end
   return dvim_config_dir
 end
 
----Get the full path to `$LUNARVIM_CACHE_DIR`
+---Get the full path to `$DOOMVIM_CACHE_DIR`
 ---@return string
 function _G.get_cache_dir()
-  local dvim_cache_dir = os.getenv "LUNARVIM_CACHE_DIR"
+  local dvim_cache_dir = os.getenv "DOOMVIM_CACHE_DIR"
   if not dvim_cache_dir then
     return vim.fn.stdpath "cache"
   end
   return dvim_cache_dir
 end
 
----Get the full path to the currently installed lunarvim repo
+---Get the full path to the currently installed doomvim repo
 ---@return string
 local function get_install_path()
-  local dvim_runtime_dir = os.getenv "LUNARVIM_RUNTIME_DIR"
+  local dvim_runtime_dir = os.getenv "DOOMVIM_RUNTIME_DIR"
   if not dvim_runtime_dir then
     -- when nvim is used directly
     return vim.fn.stdpath "config"
@@ -54,7 +54,7 @@ local function get_install_path()
   return join_paths(dvim_runtime_dir, "dvim")
 end
 
----Get currently installed version of LunarVim
+---Get currently installed version of DoomVim
 ---@param type string can be "short"
 ---@return string
 function _G.get_version(type)
@@ -83,7 +83,7 @@ function M:init()
   self.packer_install_dir = join_paths(self.runtime_dir, "site", "pack", "packer", "start", "packer.nvim")
   self.packer_cache_path = join_paths(self.config_dir, "plugin", "packer_compiled.lua")
 
-  if os.getenv "LUNARVIM_RUNTIME_DIR" then
+  if os.getenv "DOOMVIM_RUNTIME_DIR" then
     vim.opt.rtp:remove(join_paths(vim.fn.stdpath "data", "site"))
     vim.opt.rtp:remove(join_paths(vim.fn.stdpath "data", "site", "after"))
     vim.opt.rtp:prepend(join_paths(self.runtime_dir, "site"))
@@ -119,7 +119,7 @@ function M:init()
   return self
 end
 
----Update LunarVim
+---Update DoomVim
 ---pulls the latest changes from github and, resets the startup cache
 function M:update()
   hooks.run_pre_update()
@@ -175,7 +175,7 @@ function M:update_repo()
   ret = git_cmd(sub_commands.diff)
 
   if ret == 0 then
-    Log:info "LunarVim is already up-to-date"
+    Log:info "DoomVim is already up-to-date"
     return
   end
 
