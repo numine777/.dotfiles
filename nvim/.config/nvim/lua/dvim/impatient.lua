@@ -121,12 +121,12 @@ end
 function M.enable_profile()
   M.profile = {}
   M.print_profile = function()
-    M.profile["lvim.impatient"] = {
+    M.profile["dvim.impatient"] = {
       resolve = 0,
       load = impatient_dur,
       loader = "standard",
     }
-    require("lvim.impatient.profile").print_profile(M.profile)
+    require("dvim.impatient.profile").print_profile(M.profile)
   end
   vim.cmd [[command! LuaCacheProfile lua _G.__luacache.print_profile()]]
 end
@@ -277,7 +277,7 @@ impatient_dur = uv.hrtime() - impatient_load_start
 
 function M.setup(opts)
   opts = opts or {}
-  M.path = opts.path or vim.fn.stdpath "cache" .. "/lvim_cache"
+  M.path = opts.path or vim.fn.stdpath "cache" .. "/dvim_cache"
 
   if opts.enable_profiling then
     M.enable_profile()
