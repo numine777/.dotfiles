@@ -72,15 +72,8 @@ function M.config()
       ["kj"] = "<ESC>",
       -- 'jj' for quitting insert mode
       ["jj"] = "<ESC>",
-      -- Move current line / block with Alt-j/k ala vscode.
-      ["<A-j>"] = "<Esc>:m .+1<CR>==gi",
-      -- Move current line / block with Alt-j/k ala vscode.
-      ["<A-k>"] = "<Esc>:m .-2<CR>==gi",
-      -- navigation
-      ["<A-Up>"] = "<C-\\><C-N><C-w>k",
-      ["<A-Down>"] = "<C-\\><C-N><C-w>j",
-      ["<A-Left>"] = "<C-\\><C-N><C-w>h",
-      ["<A-Right>"] = "<C-\\><C-N><C-w>l",
+      -- Where is your god now?
+      ["<C-c>"] = "<ESC>",
       -- navigate tab completion with <c-j> and <c-k>
       -- runs conditionally
       ["<C-j>"] = { 'pumvisible() ? "\\<down>" : "\\<C-j>"', { expr = true, noremap = true } },
@@ -89,12 +82,6 @@ function M.config()
 
     ---@usage change or add keymappings for normal mode
     normal_mode = {
-      -- Better window movement
-      ["<C-h>"] = "<C-w>h",
-      ["<C-j>"] = "<C-w>j",
-      ["<C-k>"] = "<C-w>k",
-      ["<C-l>"] = "<C-w>l",
-
       -- Resize with arrows
       ["<C-Up>"] = ":resize -2<CR>",
       ["<C-Down>"] = ":resize +2<CR>",
@@ -105,23 +92,38 @@ function M.config()
       ["<S-l>"] = ":BufferNext<CR>",
       ["<S-h>"] = ":BufferPrevious<CR>",
 
-      -- Move current line / block with Alt-j/k a la vscode.
-      ["<A-j>"] = ":m .+1<CR>==",
-      ["<A-k>"] = ":m .-2<CR>==",
-
       -- QuickFix
-      ["]q"] = ":cnext<CR>",
-      ["[q"] = ":cprev<CR>",
+      ["<C-k>"] = ":cnext<CR>zz",
+      ["<C-j>"] = ":cprev<CR>zz",
+      ["<leader>k"] = ":lnext<CR>zz",
+      ["<leader>j"] = ":lprev<CR>zz",
       ["<C-q>"] = ":call QuickFixToggle()<CR>",
+
+      -- Cut and paste improvements
+      ["<leader>y"] = '"+y',
+      ["<leader>Y"] = 'gg"+y',
+      ["<leader>d"] = '"_d',
+
+      -- Find and replace
+      ["<leader>s"] = ":%s/\\<<C-r><C-w>\\>/<C-r><C-w>/gI<Left><Left><Left>",
+
+      -- Netrw
+      ["<leader>pv"] = ":Ex<CR>",
+
+      -- NvimTreeToggle
+      ["<leader>e"] = ":NvimTreeToggle<CR>",
+
+      -- Scratch
+      ["<leader>gs"] = ":Scratch<CR>",
+
+      -- UndoTree
+      ["<leader>u"] = ":UndotreeShow",
     },
 
     ---@usage change or add keymappings for terminal mode
     term_mode = {
       -- Terminal window navigation
-      ["<C-h>"] = "<C-\\><C-N><C-w>h",
-      ["<C-j>"] = "<C-\\><C-N><C-w>j",
-      ["<C-k>"] = "<C-\\><C-N><C-w>k",
-      ["<C-l>"] = "<C-\\><C-N><C-w>l",
+      ["<Esc>"] = "<C-\\><C-n>",
     },
 
     ---@usage change or add keymappings for visual mode
@@ -130,6 +132,10 @@ function M.config()
       ["<"] = "<gv",
       [">"] = ">gv",
 
+      -- Cut and paste improvements
+      ["<leader>y"] = '"+y',
+      ["<leader>p"] = '"_dP',
+      ["<leader>d"] = '"_d',
       -- ["p"] = '"0p',
       -- ["P"] = '"0P',
     },
@@ -139,10 +145,6 @@ function M.config()
       -- Move selected line / block of text in visual mode
       ["K"] = ":move '<-2<CR>gv-gv",
       ["J"] = ":move '>+1<CR>gv-gv",
-
-      -- Move current line / block with Alt-j/k ala vscode.
-      ["<A-j>"] = ":m '>+1<CR>gv-gv",
-      ["<A-k>"] = ":m '<-2<CR>gv-gv",
     },
 
     ---@usage change or add keymappings for command mode
