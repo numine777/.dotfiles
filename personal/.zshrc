@@ -123,12 +123,20 @@ export PATH="/Users/scott/go/bin:$PATH"
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
 export PATH="/opt/homebrew/opt/openjdk@11/bin:$PATH"
 export AWS_REGION=us-east-1
+export ANDROID_SDK_ROOT="$HOME/Library/Android/sdk"
+export GRADLE_HOME="$HOME/.local/bin/gradle-6.9.1"
 export PATH="$PATH:$HOME/bin/flutter/bin"
 export PATH="$PATH":"$HOME/.pub-cache/bin"
 export PATH="$PATH:$HOME/.cargo/bin"
 export PATH="$PATH:$HOME/Library/Android/sdk"
 export PATH="$PATH:$HOME/.local/bin"
-export ANDROID_SDK_ROOT="$HOME/Library/Android/sdk"
+export PATH="$PATH:$GRADLE_HOME/bin"
+export PATH="$PATH:$ANDROID_SDK_ROOT/emulator"
+export PATH="$PATH:$ANDROID_SDK_ROOT/tools"
+export PATH="$PATH:$ANDROID_SDK_ROOT/tools/bin"
+export PATH="$PATH:$ANDROID_SDK_ROOT/platform-tools"
+export LANG=en_US.UTF-8
+export LC_CTYPE=en_US.UTF-8
 
 function gam() { "/Users/scott/bin/gam/gam" "$@" ; }
 
