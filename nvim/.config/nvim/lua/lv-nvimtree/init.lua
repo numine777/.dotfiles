@@ -11,7 +11,7 @@ function M.config()
       open_on_tab = false,
       disable_netrw = false,
       update_focused_file = {
-        enable = true,
+        enable = false,
       },
       diagnostics = {
         enable = true,
@@ -38,9 +38,9 @@ function M.config()
       folder_arrows = 1,
       tree_width = 30,
     },
-    ignore = { ".git", "node_modules", ".cache" },
+    -- ignore = { ".git", "node_modules", ".cache" },
     quit_on_open = 0,
-    hide_dotfiles = 1,
+    hide_dotfiles = 0,
     git_hl = 1,
     root_folder_modifier = ":t",
     allow_resize = 1,
@@ -99,37 +99,10 @@ function M.setup()
     }
   end
 
-  -- dvim.builtin.which_key.mappings["e"] = { "<cmd>NvimTreeToggle<CR>", "Explorer" }
-
-  local tree_view = require "nvim-tree.view"
-
-  -- Add nvim_tree open callback
-  local open = tree_view.open
-  tree_view.open = function()
-    M.on_open()
-    open()
-  end
-
-  vim.cmd "au WinClosed * lua require('lv-nvimtree').on_close()"
-
   if dvim.builtin.nvimtree.on_config_done then
     dvim.builtin.nvimtree.on_config_done(nvim_tree_config)
   end
   require("nvim-tree").setup(dvim.builtin.nvimtree.setup)
-end
-
-function M.on_open()
-  if package.loaded["bufferline.state"] and dvim.builtin.nvimtree.setup.view.side == "left" then
-    require("bufferline.state").set_offset(dvim.builtin.nvimtree.setup.view.width + 1, "")
-  end
-end
-
-function M.on_close()
-  local buf = tonumber(vim.fn.expand "<abuf>")
-  local ft = vim.api.nvim_buf_get_option(buf, "filetype")
-  if ft == "NvimTree" and package.loaded["bufferline.state"] then
-    require("bufferline.state").set_offset(0)
-  end
 end
 
 function M.change_tree_dir(dir)
