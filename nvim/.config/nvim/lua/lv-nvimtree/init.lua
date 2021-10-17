@@ -9,6 +9,7 @@ function M.config()
       open_on_setup = false,
       auto_close = true,
       open_on_tab = false,
+      disable_netrw = false,
       update_focused_file = {
         enable = true,
       },

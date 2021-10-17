@@ -9,5 +9,5 @@ vim.cmd 'nnoremap <leader>grom :Git rebase origin/master<CR>'
 
 vim.cmd 'nmap <leader>gh :diffget //3<CR>'
 vim.cmd 'nmap <leader>gu :diffget //2<CR>'
-vim.cmd 'nmap <leader>gl :G<CR>'
+vim.cmd 'nmap <leader>gg :G<CR>'
 
