@@ -34,6 +34,10 @@ M.config = function()
       behavior = cmp.ConfirmBehavior.Replace,
       select = true,
     },
+    experimental = {
+      ghost_text = true,
+      native_menu = false,
+    },
     formatting = {
       kind_icons = {
         Class = " ",
