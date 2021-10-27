@@ -69,7 +69,7 @@ end
 
 local function set_background(content)
     vim.fn.system(
-        "feh --bg-scale /home/scott/backgrounds \"'"
+        "dconf write /org/mate/desktop/background/picture-filename \"'"
             .. content
             .. "'\""
     )

@@ -5,7 +5,7 @@ local M = {}
 function M:init(opts)
   opts = opts or {}
   self.path = opts.path
-  require('impatient')
+  -- require('impatient')
 
   require "config.defaults"
 
