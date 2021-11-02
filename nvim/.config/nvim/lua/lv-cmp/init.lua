@@ -69,15 +69,21 @@ M.config = function()
 			format = function(entry, vim_item)
 				vim_item.kind = dvim.builtin.cmp.formatting.kind_icons[vim_item.kind]
 				vim_item.menu = ({
-					nvim_lsp = "(LSP)",
-					emoji = "(Emoji)",
-					path = "(Path)",
-					calc = "(Calc)",
+					-- nvim_lsp = "(LSP)",
+					-- emoji = "(Emoji)",
+					-- path = "(Path)",
+					-- calc = "(Calc)",
 					cmp_tabnine = "(Tabnine)",
-					vsnip = "(Snippet)",
+					-- vsnip = "(Snippet)",
 					luasnip = "(Snippet)",
-					buffer = "(Buffer)",
+					-- buffer = "(Buffer)",
 				})[entry.source.name]
+                if entry.source.name == 'cmp_tabnine' then
+                    if entry.completion_item.data ~= nil and entry.completion_item.data.detail ~= nil then
+                        vim_item.menu = entry.completion_item.data.detail
+                    end
+                    vim_item.kind = dvim.builtin.cmp.formatting.kind_icons.Event
+                end
 				vim_item.dup = ({
 					buffer = 1,
 					path = 1,

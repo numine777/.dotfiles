@@ -59,7 +59,7 @@ M.setup = function()
   }
 
   if package.loaded["cmp"] then
-    require("nvim-autopairs.completion.cmp").setup {
+    require("cmp").setup {
       map_cr = dvim.builtin.autopairs.map_cr,
       map_complete = dvim.builtin.autopairs.map_complete,
       auto_select = dvim.builtin.autopairs.auto_select,

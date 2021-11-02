@@ -72,6 +72,7 @@ ZSH_THEME="robbyrussell"
 # Add wisely, as too many plugins slow down shell startup.
 plugins=(
   git
+  poetry
   zsh-autosuggestions
 )
 
@@ -108,7 +109,7 @@ export PATH="$PATH:/home/scott/go/bin"
 export PATH="$PATH:/home/scott/.android/"
 export ANDROID_SDK_ROOT="/home/scott/Android/Sdk"
 export ANDROID_HOME="/home/scott/Android/Sdk"
-export GRADLE_HOME="$HOME/.local/bin/gradle-6.9.1"
+# export GRADLE_HOME="$HOME/.local/bin/gradle-6.9.1"
 export PATH="$PATH:$ANDROID_SDK_ROOT/emulator"
 export PATH="$PATH:$ANDROID_SDK_ROOT/tools"
 export PATH="$PATH:$ANDROID_SDK_ROOT/tools/bin"
@@ -127,3 +128,9 @@ alias emulator="/home/scott/Android/Sdk/emulator/emulator"
 alias phone="emulator -avd Pixel_3a_API_30_x86 -dns-server 8.8.8.8"
 
 bindkey -s ^f "tmux-sessionizer\n"
+
+#THIS MUST BE AT THE END OF THE FILE FOR SDKMAN TO WORK!!!
+export SDKMAN_DIR="$HOME/.sdkman"
+[[ -s "$HOME/.sdkman/bin/sdkman-init.sh" ]] && source "$HOME/.sdkman/bin/sdkman-init.sh"
+
+export PATH="$HOME/.poetry/bin:$PATH"

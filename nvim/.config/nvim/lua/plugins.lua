@@ -156,4 +156,7 @@ return require("packer").startup(function(use)
 
 	-- Scratch
 	use({ "mtth/scratch.vim" })
+
+    -- Dadbod
+    use({ "tpope/vim-dadbod" })
 end)
