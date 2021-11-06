@@ -1,3 +1,5 @@
 dvim = {
-    builtin = {},
+	leader = "space",
+	keys = {},
+	builtin = {},
 }

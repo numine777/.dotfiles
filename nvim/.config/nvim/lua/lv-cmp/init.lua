@@ -69,14 +69,14 @@ M.config = function()
 			format = function(entry, vim_item)
 				vim_item.kind = dvim.builtin.cmp.formatting.kind_icons[vim_item.kind]
 				vim_item.menu = ({
-					-- nvim_lsp = "(LSP)",
+					nvim_lsp = "(LSP)",
 					-- emoji = "(Emoji)",
-					-- path = "(Path)",
-					-- calc = "(Calc)",
+					path = "(Path)",
+					calc = "(Calc)",
 					cmp_tabnine = "(Tabnine)",
-					-- vsnip = "(Snippet)",
+					vsnip = "(Snippet)",
 					luasnip = "(Snippet)",
-					-- buffer = "(Buffer)",
+					buffer = "(Buffer)",
 				})[entry.source.name]
                 if entry.source.name == 'cmp_tabnine' then
                     if entry.completion_item.data ~= nil and entry.completion_item.data.detail ~= nil then
@@ -101,10 +101,10 @@ M.config = function()
 			border = { "╭", "─", "╮", "│", "╯", "─", "╰", "│" },
 		},
 		sources = {
+            { name = "cmp_tabnine" },
 			{ name = "nvim_lsp" },
 			{ name = "path" },
 			{ name = "luasnip" },
-			{ name = "cmp_tabnine" },
 			{ name = "nvim_lua" },
 			{ name = "buffer" },
 			{ name = "calc" },
