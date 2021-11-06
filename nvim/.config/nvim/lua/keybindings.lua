@@ -1,41 +1,110 @@
-vim.g.leader = "space"
+local M = {}
 
-vim.cmd 'nnoremap <silent> Q <nop>'
-vim.cmd 'nnoremap <silent> <C-f> :lua require("harpoon.term").sendCommand(1, "tmux-sessionizer\\n"); require("harpoon.term").gotoTerminal(1)<CR>'
-vim.cmd 'nnoremap <leader>vwh :h <C-R>=expand("<cword>")<CR><CR>'
-vim.cmd 'nnoremap <leader>bs /<C-R>=escape(expand("<cWORD>"), "/")<CR><CR>'
-vim.cmd 'nnoremap <leader>u :UndotreeShow<CR>'
-vim.cmd 'nnoremap <leader>e :NvimTreeToggle<CR>'
-vim.cmd 'nnoremap <leader>pv :Ex<CR>'
--- vim.cmd 'nnoremap <leader>h :wincmd h<CR>'
--- vim.cmd 'nnoremap <leader>l :wincmd l<CR>'
--- vim.cmd 'nnoremap <leader>j :wincmd j<CR>'
--- vim.cmd 'nnoremap <leader>k :wincmd k<CR>'
-vim.cmd 'nnoremap <Leader><CR> :so ~/.config/nvim/init.vim<CR>'
-vim.cmd 'nnoremap <Leader>+ :vertical resize +5<CR>'
-vim.cmd 'nnoremap <Leader>- :vertical resize -5<CR>'
-vim.cmd 'nnoremap <Leader>rp :resize 100<CR>'
-vim.cmd 'nnoremap <Leader>ee oif err != nil {<CR>log.Fatalf("%+v\\n", err)<CR>}<CR><esc>kkI<esc>'
-vim.cmd 'nnoremap <Leader>cpu a%" PRIu64 "<esc>'
-vim.cmd 'nnoremap <leader>s :%s/\\<<C-r><C-w>\\>/<C-r><C-w>/gI<Left><Left><Left>'
-vim.cmd 'nnoremap <leader>gs :Scratch<CR>'
-vim.cmd "vnoremap J :m '>+1<CR>gv=gv"
-vim.cmd "vnoremap K :m '<-2<CR>gv=gv"
+local generic_opts_any = { noremap = true, silent = true }
 
--- greatest remap ever
-vim.cmd 'vnoremap <leader>p "_dP'
+local generic_opts = {
+	insert_mode = generic_opts_any,
+	normal_mode = generic_opts_any,
+	visual_mode = generic_opts_any,
+	visual_block_mode = generic_opts_any,
+	command_mode = generic_opts_any,
+	term_mode = { silent = true },
+}
 
--- next greatest remap ever : asbjornHaland
-vim.cmd 'nnoremap <leader>y "+y'
-vim.cmd 'vnoremap <leader>y "+y'
-vim.cmd 'nnoremap <leader>Y gg"+yG'
+local mode_adapters = {
+	insert_mode = "i",
+	normal_mode = "n",
+	term_mode = "t",
+	visual_mode = "v",
+	visual_block_mode = "x",
+	command_mode = "c",
+}
 
-vim.cmd 'nnoremap <leader>d "_d'
-vim.cmd 'vnoremap <leader>d "_d'
-vim.cmd 'inoremap <C-c> <esc>'
+-- Append key mappings to lunarvim's defaults for a given mode
+-- @param keymaps The table of key mappings containing a list per mode (normal_mode, insert_mode, ..)
+function M.append_to_defaults(keymaps)
+	for mode, mappings in pairs(keymaps) do
+		for k, v in ipairs(mappings) do
+			dvim.keys[mode][k] = v
+		end
+	end
+end
 
-vim.cmd 'nnoremap <C-k> :cnext<CR>zz'
-vim.cmd 'nnoremap <C-j> :cprev<CR>zz'
-vim.cmd 'nnoremap <leader>k :lnext<CR>zz'
-vim.cmd 'nnoremap <leader>j :lprev<CR>zz'
-vim.cmd 'tnoremap <Esc> <C-\\><C-n>'
+-- Set key mappings individually
+-- @param mode The keymap mode, can be one of the keys of mode_adapters
+-- @param key The key of keymap
+-- @param val Can be form as a mapping or tuple of mapping and user defined opt
+function M.set_keymaps(mode, key, val)
+	local opt = generic_opts[mode] and generic_opts[mode] or generic_opts_any
+	if type(val) == "table" then
+		opt = val[2]
+		val = val[1]
+	end
+	vim.api.nvim_set_keymap(mode, key, val, opt)
+end
+
+-- Load key mappings for a given mode
+-- @param mode The keymap mode, can be one of the keys of mode_adapters
+-- @param keymaps The list of key mappings
+function M.load_mode(mode, keymaps)
+	mode = mode_adapters[mode] and mode_adapters[mode] or mode
+	for k, v in pairs(keymaps) do
+		M.set_keymaps(mode, k, v)
+	end
+end
+
+-- Load key mappings for all provided modes
+-- @param keymaps A list of key mappings for each mode
+function M.load(keymaps)
+	keymaps = keymaps or {}
+	for mode, mapping in pairs(keymaps) do
+		M.load_mode(mode, mapping)
+	end
+end
+
+function M.get_defaults()
+	local keys = {
+		normal_mode = {
+			["Q"] = "<nop>",
+			["<C-f>"] = ':lua require("harpoon.term").sendCommand(1, "tmux-sessionizer\\n"); require("harpoon.term").gotoTerminal(1)<CR>',
+			["<leader>vwh"] = ':h <C-R>=expand("<cword>")<CR><CR>',
+			["<leader>bs"] = '/<C-R>=escape(expand("<cWORD>"), "/")<CR><CR>',
+			["<leader>u"] = ":UndotreeShow<CR>",
+			["<leader>pv"] = ":Ex<CR>",
+			["<leader>rp"] = ":resize 100<CR>",
+			["<leader>+"] = ":vertical resize +5<CR>",
+			["<leader>-"] = ":vertical resize -5<CR>",
+			["<leader>s"] = ":%s/\\<<C-r><C-w>\\>/<C-r><C-w>/gI<Left><Left><Left>",
+			["<leader>gs"] = ":Scratch<CR>",
+			["<leader>y"] = '"+y',
+			["<leader>Y"] = 'gg"+yG',
+			["<leader>d"] = '"_d',
+			["<C-k>"] = ":cnext<CR>zz",
+			["<C-j>"] = ":cprev<CR>zz",
+			["<leader>k"] = ":lnext<CR>zz",
+			["<leader>j"] = ":lprev<CR>zz",
+			["gf"] = ":e <cfile><CR>",
+		},
+
+		visual_mode = {
+			["J"] = ":m '>+1<CR>gv=gv",
+			["K"] = ":m '<-2<CR>gv=gv",
+
+			-- greatest remap ever
+			["<leader>p"] = '"_dP',
+
+			-- next greatest remap ever : asbjornHaland
+			["<leader>y"] = '"+y',
+
+			["<leader>d"] = '"_d',
+		},
+
+		insert_mode = { ["<C-c>"] = "<esc>" },
+
+		term_mode = { ["<Esc>"] = "<C-\\><C-n>" },
+	}
+
+    return keys
+end
+
+return M
