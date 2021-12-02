@@ -53,15 +53,20 @@ lvim.builtin.treesitter.highlight.enabled = true
 -- lvim.lsp.null_ls.setup = {
 -- 	root_dir = require("lspconfig").util.root_pattern(root_files),
 -- }
+local formatters = require("lvim.lsp.null-ls.formatters")
+formatters.setup({
+	{ exe = "prettier", filetypes = { "javascript", "javascriptreact", "typescript", "typescriptreact", "json" } },
+	{ exe = "stylua", filetypes = { "lua" } },
+})
 
 lvim.format_on_save = false
-lvim.lang.python.formatters = { { exe = "black" } }
-lvim.lang.python.linters = { { exe = "flake8" } }
+-- lvim.lang.python.formatters = { { exe = "black" } }
+-- lvim.lang.python.linters = { { exe = "flake8" } }
 
-lvim.lang.lua.formatters = { { exe = "stylua" } }
+-- lvim.lang.lua.formatters = { { exe = "stylua" } }
 
-lvim.lang.typescript.formatters = { { exe = "prettier" } }
-lvim.lang.typescript.linters = { { exe = "eslint" } }
+-- lvim.lang.typescript.formatters = { { exe = "prettier" } }
+-- lvim.lang.typescript.linters = { { exe = "eslint" } }
 
 lvim.plugins = {
 	{
@@ -73,6 +78,7 @@ lvim.plugins = {
 		"Shatur/neovim-ayu",
 		{ "npxbr/gruvbox.nvim", requires = { "rktjmp/lush.nvim" } },
 		{ "tzachar/cmp-tabnine", run = "./install.sh", requires = "hrsh7th/nvim-cmp" },
+		{ "github/copilot.vim" },
 	},
 }
 

@@ -30,7 +30,7 @@ vim.cmd 'nnoremap <leader>vll :call LspLocationList()<CR>'
 
 vim.cmd("nnoremap <silent><leader>ca :Lspsaga code_action<CR>")
 vim.cmd("vnoremap <silent><leader>ca :<C-U>Lspsaga range_code_action<CR>")
-vim.cmd('nnoremap <silent> K <cmd>lua require("lspsaga.hover").render_hover_doc()<CR>')
+vim.cmd('nnoremap <silent> K :lua vim.lsp.buf.hover()<CR>')
 vim.cmd('nnoremap <silent><leader>gr <cmd>lua require("lspsaga.rename").rename()<CR>')
 vim.cmd('nnoremap <silent> gd <cmd>lua require"lspsaga.provider".preview_definition()<CR>')
 vim.cmd('nnoremap <silent> gs <cmd>lua require("lspsaga.signaturehelp").signature_help()<CR>')
