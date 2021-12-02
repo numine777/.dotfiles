@@ -15,7 +15,7 @@ export ZSH="/Users/scott/.oh-my-zsh"
 # load a random theme each time oh-my-zsh is loaded, in which case,
 # to know which specific one was loaded, run: echo $RANDOM_THEME
 # See https://github.com/ohmyzsh/ohmyzsh/wiki/Themes
-ZSH_THEME="powerlevel10k/powerlevel10k"
+ZSH_THEME="robbyrussell"
 
 # Set list of themes to pick from when loading at random
 # Setting this variable when ZSH_THEME=random will cause zsh to load
@@ -111,7 +111,7 @@ source $ZSH/oh-my-zsh.sh
 # alias ohmyzsh="mate ~/.oh-my-zsh"
 alias ibrew="arch -x86_64 /usr/local/bin/brew"
 alias brew="/opt/homebrew/bin/brew"
-alias nvim="/opt/homebrew/bin/nvim"
+alias nvim="/usr/local/bin/nvim"
 alias vim="nvim"
 alias getToken="python3 /Users/scott/work/adyton/generate_token.py"
 export PATH="$PATH:/opt/homebrew/bin"
@@ -140,6 +140,12 @@ export LC_CTYPE=en_US.UTF-8
 
 function gam() { "/Users/scott/bin/gam/gam" "$@" ; }
 
+bindkey -s ^f "tmux-sessionizer\n"
+
 if [[ -f /usr/local/share/chtf/chtf.sh ]]; then
     source /usr/local/share/chtf/chtf.sh
 fi
+
+#THIS MUST BE AT THE END OF THE FILE FOR SDKMAN TO WORK!!!
+export SDKMAN_DIR="$HOME/.sdkman"
+[[ -s "$HOME/.sdkman/bin/sdkman-init.sh" ]] && source "$HOME/.sdkman/bin/sdkman-init.sh"
