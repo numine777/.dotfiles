@@ -116,6 +116,7 @@ export PATH="$PATH:$ANDROID_SDK_ROOT/tools/bin"
 export PATH="$PATH:$ANDROID_SDK_ROOT/platform-tools"
 export PATH="$PATH:$GRADLE_HOME/bin"
 export PATH="$PATH:$HOME/bin/flutter/bin"
+export PATH="$HOME/.poetry/bin:$PATH"
 
 alias luamake=/home/scott/lua-language-server/3rd/luamake/luamake
 
@@ -132,5 +133,3 @@ bindkey -s ^f "tmux-sessionizer\n"
 #THIS MUST BE AT THE END OF THE FILE FOR SDKMAN TO WORK!!!
 export SDKMAN_DIR="$HOME/.sdkman"
 [[ -s "$HOME/.sdkman/bin/sdkman-init.sh" ]] && source "$HOME/.sdkman/bin/sdkman-init.sh"
-
-export PATH="$HOME/.poetry/bin:$PATH"
