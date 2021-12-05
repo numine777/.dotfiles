@@ -28,8 +28,8 @@ return require("packer").startup(function(use)
 	-- Packer can manage itself as an optional plugin
 	use("wbthomason/packer.nvim")
 
-    -- Impatient loading
-    use 'lewis6991/impatient.nvim'
+	-- Impatient loading
+	use("lewis6991/impatient.nvim")
 
 	-- TODO refactor all of this (for now it works, but yes I know it could be wrapped in a simpler function)
 	use({ "neovim/nvim-lspconfig" })
@@ -78,7 +78,8 @@ return require("packer").startup(function(use)
 			end
 		end,
 	})
-    use({'tzachar/cmp-tabnine', run='./install.sh', requires = 'hrsh7th/nvim-cmp'})
+	use({ "tzachar/cmp-tabnine", run = "./install.sh", requires = "hrsh7th/nvim-cmp" })
+	use({ "github/copilot.vim" })
 	use({ "hrsh7th/vim-vsnip" })
 	use({ "rafamadriz/friendly-snippets" })
 
@@ -157,6 +158,6 @@ return require("packer").startup(function(use)
 	-- Scratch
 	use({ "mtth/scratch.vim" })
 
-    -- Dadbod
-    use({ "tpope/vim-dadbod" })
+	-- Dadbod
+	use({ "tpope/vim-dadbod" })
 end)
