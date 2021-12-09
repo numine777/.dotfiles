@@ -33,7 +33,7 @@ return require("packer").startup(function(use)
 
 	-- TODO refactor all of this (for now it works, but yes I know it could be wrapped in a simpler function)
 	use({ "neovim/nvim-lspconfig" })
-	use({ "tami5/lspsaga.nvim" })
+	-- use({ "tami5/lspsaga.nvim" })
 	use({ "williamboman/nvim-lsp-installer" })
 	use({ "folke/trouble.nvim" })
 	use({ "sbdchd/neoformat" })

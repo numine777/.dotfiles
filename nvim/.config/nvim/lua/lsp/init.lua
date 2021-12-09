@@ -13,8 +13,6 @@ local opts = {
 require("symbols-outline").setup(opts)
 require("nvim-web-devicons").get_icons()
 local lsp_config = {}
-local saga = require("lspsaga")
-saga.init_lsp_saga()
 
 vim.cmd("nnoremap <leader>vd :lua vim.lsp.buf.definition()<CR>")
 vim.cmd("nnoremap <leader>vi :lua vim.lsp.buf.implementation()<CR>")
@@ -28,18 +26,7 @@ vim.cmd("nnoremap <leader>vn :lua vim.lsp.diagnostic.goto_next()<CR>")
 vim.cmd("nnoremap <leader>f :Neoformat<CR>")
 vim.cmd 'nnoremap <leader>vll :call LspLocationList()<CR>'
 
-vim.cmd("nnoremap <silent><leader>ca :Lspsaga code_action<CR>")
-vim.cmd("vnoremap <silent><leader>ca :<C-U>Lspsaga range_code_action<CR>")
 vim.cmd('nnoremap <silent> K :lua vim.lsp.buf.hover()<CR>')
-vim.cmd('nnoremap <silent><leader>gr <cmd>lua require("lspsaga.rename").rename()<CR>')
-vim.cmd('nnoremap <silent> gd <cmd>lua require"lspsaga.provider".preview_definition()<CR>')
-vim.cmd('nnoremap <silent> gs <cmd>lua require("lspsaga.signaturehelp").signature_help()<CR>')
-vim.cmd("nnoremap <silent> gh :Lspsaga lsp_finder<CR>")
-vim.cmd("nnoremap <silent> <leader>cd :Lspsaga show_line_diagnostics<CR>")
-vim.cmd("nnoremap <silent> [e :Lspsaga diagnostic_jump_next<CR>")
-vim.cmd("nnoremap <silent> ]e :Lspsaga diagnostic_jump_prev<CR>")
-vim.cmd("nnoremap <silent> <A-d> :Lspsaga open_floaterm<CR>")
-vim.cmd("tnoremap <silent> <A-d> <C-\\><C-n>:Lspsaga close_floaterm<CR>")
 vim.api.nvim_set_keymap("n", "<leader>xx", "<cmd>Trouble<cr>", { silent = true, noremap = true })
 vim.api.nvim_set_keymap(
 	"n",

@@ -116,46 +116,46 @@ M.config = function()
 			["<C-d>"] = cmp.mapping.scroll_docs(-4),
 			["<C-f>"] = cmp.mapping.scroll_docs(4),
 			-- TODO: potentially fix emmet nonsense
-			["<Tab>"] = cmp.mapping(function()
-				if vim.fn.pumvisible() == 1 then
-					vim.fn.feedkeys(T("<down>"), "n")
-				elseif luasnip.expand_or_jumpable() then
-					vim.fn.feedkeys(T("<Plug>luasnip-expand-or-jump"), "")
-				elseif check_backspace() then
-					vim.fn.feedkeys(T("<Tab>"), "n")
-				elseif is_emmet_active() then
-					return vim.fn["cmp#complete"]()
-				else
-					vim.fn.feedkeys(T("<Tab>"), "n")
-				end
-			end, {
-				"i",
-				"s",
-			}),
-			["<S-Tab>"] = cmp.mapping(function(fallback)
-				if vim.fn.pumvisible() == 1 then
-					vim.fn.feedkeys(T("<up>"), "n")
-				elseif luasnip.jumpable(-1) then
-					vim.fn.feedkeys(T("<Plug>luasnip-jump-prev"), "")
-				else
-					fallback()
-				end
-			end, {
-				"i",
-				"s",
-			}),
-
-			["<C-Space>"] = cmp.mapping.complete(),
-			["<C-e>"] = cmp.mapping.close(),
-			["<CR>"] = cmp.mapping(function(fallback)
-				if not require("cmp").confirm(dvim.builtin.cmp.confirm_opts) then
-					if luasnip.jumpable() then
-						vim.fn.feedkeys(T("<Plug>luasnip-jump-next"), "")
-					else
-						fallback()
-					end
-				end
-			end),
+-- 			["<Tab>"] = cmp.mapping(function()
+-- 				if vim.fn.pumvisible() == 1 then
+-- 					vim.fn.feedkeys(T("<down>"), "n")
+-- 				elseif luasnip.expand_or_jumpable() then
+-- 					vim.fn.feedkeys(T("<Plug>luasnip-expand-or-jump"), "")
+-- 				elseif check_backspace() then
+-- 					vim.fn.feedkeys(T("<Tab>"), "n")
+-- 				elseif is_emmet_active() then
+-- 					return vim.fn["cmp#complete"]()
+-- 				else
+-- 					vim.fn.feedkeys(T("<Tab>"), "n")
+-- 				end
+-- 			end, {
+-- 				"i",
+-- 				"s",
+-- 			}),
+-- 			["<S-Tab>"] = cmp.mapping(function(fallback)
+-- 				if vim.fn.pumvisible() == 1 then
+-- 					vim.fn.feedkeys(T("<up>"), "n")
+-- 				elseif luasnip.jumpable(-1) then
+-- 					vim.fn.feedkeys(T("<Plug>luasnip-jump-prev"), "")
+-- 				else
+-- 					fallback()
+-- 				end
+-- 			end, {
+-- 				"i",
+-- 				"s",
+-- 			}),
+--
+-- 			["<C-Space>"] = cmp.mapping.complete(),
+-- 			["<C-e>"] = cmp.mapping.close(),
+-- 			["<CR>"] = cmp.mapping(function(fallback)
+-- 				if not require("cmp").confirm(dvim.builtin.cmp.confirm_opts) then
+-- 					if luasnip.jumpable() then
+-- 						vim.fn.feedkeys(T("<Plug>luasnip-jump-next"), "")
+-- 					else
+-- 						fallback()
+-- 					end
+-- 				end
+-- 			end),
 		},
 	}
 end

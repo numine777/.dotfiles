@@ -114,9 +114,8 @@ treesitter_configs.setup({
 		enable = { active = false },
 		config = { css = "// %s" },
 	},
-	-- indent = {enable = true, disable = {"python", "html", "javascript"}},
 	-- TODO seems to be broken
-	indent = { enable = { "javascriptreact" } },
+	indent = { enable = true, disable = { "yaml" } },
 	autotag = { enable = false },
 	textobjects = {
 		swap = {

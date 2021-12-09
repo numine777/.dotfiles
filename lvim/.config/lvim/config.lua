@@ -62,15 +62,6 @@ formatters.setup({
 lvim.format_on_save = false
 -- lvim.lang.python.formatters = { { exe = "black" } }
 -- lvim.lang.python.linters = { { exe = "flake8" } }
-<<<<<<< Updated upstream
-
--- lvim.lang.lua.formatters = { { exe = "stylua" } }
-
-=======
--- 
--- lvim.lang.lua.formatters = { { exe = "stylua" } }
--- 
->>>>>>> Stashed changes
 -- lvim.lang.typescript.formatters = { { exe = "prettier" } }
 -- lvim.lang.typescript.linters = { { exe = "eslint" } }
 
