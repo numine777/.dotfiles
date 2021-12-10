@@ -11,5 +11,5 @@ vim.cmd 'let g:neoformat_enabled_javascriptreact = ["prettier"]'
 vim.cmd 'let g:neoformat_enabled_typescript = ["prettier"]'
 vim.cmd 'let g:neoformat_enabled_typescriptreact = ["prettier"]'
 
--- vim.cmd "let g:neoformat_cpp_clangformat = { 'exe': 'clang-format', 'args': ['-style=\"{BasedOnStyle: LLVM, IndentWidth: 4}\"', '-assume-filename=' . expand('%:t')], 'stdin': 1 }"
+-- vim.cmd [[ let g:neoformat_cpp_clangformat = { 'exe': 'clang-format', 'args': ['-assume-filename=' . expand('%:t')], 'stdin': 1 } ]]
 vim.cmd 'let g:neoformat_enabled_cpp = ["clangformat"]'

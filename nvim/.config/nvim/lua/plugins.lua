@@ -79,7 +79,7 @@ return require("packer").startup(function(use)
 		end,
 	})
 	use({ "tzachar/cmp-tabnine", run = "./install.sh", requires = "hrsh7th/nvim-cmp" })
-	use({ "github/copilot.vim" })
+	-- use({ "github/copilot.vim" })
 	use({ "hrsh7th/vim-vsnip" })
 	use({ "rafamadriz/friendly-snippets" })
 

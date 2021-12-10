@@ -147,15 +147,15 @@ M.config = function()
 --
 -- 			["<C-Space>"] = cmp.mapping.complete(),
 -- 			["<C-e>"] = cmp.mapping.close(),
--- 			["<CR>"] = cmp.mapping(function(fallback)
--- 				if not require("cmp").confirm(dvim.builtin.cmp.confirm_opts) then
--- 					if luasnip.jumpable() then
--- 						vim.fn.feedkeys(T("<Plug>luasnip-jump-next"), "")
--- 					else
--- 						fallback()
--- 					end
--- 				end
--- 			end),
+			["<CR>"] = cmp.mapping(function(fallback)
+				if not require("cmp").confirm(dvim.builtin.cmp.confirm_opts) then
+					if luasnip.jumpable() then
+						vim.fn.feedkeys(T("<Plug>luasnip-jump-next"), "")
+					else
+						fallback()
+					end
+				end
+			end),
 		},
 	}
 end
