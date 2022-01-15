@@ -29,6 +29,7 @@ vim.g.isfname = "+=@-@"
 vim.opt.splitbelow = true
 vim.opt.splitright = true
 vim.opt.relativenumber = true
+vim.opt.colorcolumn = "80"
 -- vim.opt.clipboard = "unnamedplus" -- allows neovim to access the system clipboard
 
 -- Give more space for displaying messages.
@@ -60,10 +61,10 @@ vim.g.netrw_winsize = 25
 vim.g.netrw_localrmdir = "rm -rf"
 
 vim.g.colors_name = "gruvbox"
-vim.cmd("au ColorScheme * hi Normal ctermbg=none guibg=none")
-vim.cmd("au ColorScheme * hi SignColumn ctermbg=none guibg=none")
-vim.cmd("au ColorScheme * hi NormalNC ctermbg=none guibg=none")
-vim.cmd("au ColorScheme * hi MsgArea ctermbg=none guibg=none")
-vim.cmd("au ColorScheme * hi TelescopeBorder ctermbg=none guibg=none")
-vim.cmd("au ColorScheme * hi NvimTreeNormal ctermbg=none guibg=none")
-vim.cmd("let &fcs='eob: '")
+-- vim.cmd("au ColorScheme * hi Normal ctermbg=none guibg=none")
+-- vim.cmd("au ColorScheme * hi SignColumn ctermbg=none guibg=none")
+-- vim.cmd("au ColorScheme * hi NormalNC ctermbg=none guibg=none")
+-- vim.cmd("au ColorScheme * hi MsgArea ctermbg=none guibg=none")
+-- vim.cmd("au ColorScheme * hi TelescopeBorder ctermbg=none guibg=none")
+-- vim.cmd("au ColorScheme * hi NvimTreeNormal ctermbg=none guibg=none")
+-- vim.cmd("let &fcs='eob: '")

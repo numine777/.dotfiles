@@ -4,11 +4,14 @@ CACHE_PATH = vim.fn.stdpath("cache")
 lvim.log.level = "warn"
 lvim.format_on_save = true
 lvim.colorscheme = "gruvbox"
-lvim.transparent_window = true
+lvim.transparent_window = false
 lvim.builtin.nvimtree.ignore = {}
 lvim.builtin.nvimtree.hide_dotfiles = 0
 vim.opt.relativenumber = true
 vim.opt.clipboard = "unnamed"
+vim.opt.timeoutlen = 200
+vim.opt.shiftwidth = 4
+vim.opt.tabstop = 4
 
 lvim.leader = "space"
 
@@ -20,12 +23,12 @@ lvim.builtin.autopairs.active = true
 lvim.builtin.terminal.open_mapping = [[<c-\>]]
 lvim.builtin.nvimtree.setup.view.side = "left"
 lvim.builtin.nvimtree.show_icons.git = 1
-vim.opt.timeoutlen = 200
 
 -- if you don't want all the parsers change this to a table of the ones you want
 lvim.builtin.treesitter.ensure_installed = {
 	"bash",
 	"c",
+	"cpp",
 	"javascript",
 	"json",
 	"lua",
@@ -48,7 +51,7 @@ formatters.setup({
 		filetypes = { "javascript", "javascriptreact", "typescript", "typescriptreact", "json" },
 	},
 	{ exe = "stylua", filetypes = { "lua" } },
-	{ exe = "clang-format", filetypes = { "cpp" } },
+	-- { exe = "clang-format", filetypes = { "cpp" } },
 })
 
 lvim.format_on_save = false
@@ -158,7 +161,11 @@ lvim.keys.normal_mode["<C-f>"] =
 	':lua require("harpoon.term").sendCommand(1, "tmux-sessionizer\\n"); require("harpoon.term").gotoTerminal(1)<CR>'
 lvim.keys.term_mode["<Esc>"] = "<C-\\><C-n>"
 lvim.builtin.which_key.mappings["y"] = { '"+y', "Yank to clipboard" }
+lvim.builtin.which_key.vmappings["y"] = { '"+y', "Yank to clipboard" }
+lvim.builtin.which_key.mappings["d"] = { '"_d', "Delete" }
+lvim.builtin.which_key.vmappings["d"] = { '"_d', "Delete" }
 lvim.builtin.which_key.mappings["p"] = { '"+p', "Put from clipboard" }
+lvim.builtin.which_key.vmappings["p"] = { '"+p', "Put from clipboard" }
 lvim.builtin.which_key.mappings["h"] = { ":wincmd h<cr>", "Window left" }
 lvim.builtin.which_key.mappings["j"] = { ":wincmd j<cr>", "Window down" }
 lvim.builtin.which_key.mappings["k"] = { ":wincmd k<cr>", "Window up" }

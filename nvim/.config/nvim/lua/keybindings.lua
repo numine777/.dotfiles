@@ -83,6 +83,8 @@ function M.get_defaults()
 			["<C-j>"] = ":cprev<CR>zz",
 			["<leader>k"] = ":lnext<CR>zz",
 			["<leader>j"] = ":lprev<CR>zz",
+			["<C-q>"] = ":call ToggleQFList(1)<CR>",
+			["<leader>q"] = ":call ToggleQFList(0)<CR>",
 			["gf"] = ":e <cfile><CR>",
 		},
 
@@ -104,7 +106,7 @@ function M.get_defaults()
 		term_mode = { ["<Esc>"] = "<C-\\><C-n>" },
 	}
 
-    return keys
+	return keys
 end
 
 return M

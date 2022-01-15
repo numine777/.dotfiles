@@ -104,6 +104,7 @@ source $ZSH/oh-my-zsh.sh
 # alias zshconfig="mate ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
 
+export PATH="/home/scott/bin/depot_tools:$PATH"
 export PATH="$PATH:/home/scott/.local/bin"
 export PATH="$PATH:/home/scott/go/bin"
 export PATH="$PATH:/home/scott/.android/"
