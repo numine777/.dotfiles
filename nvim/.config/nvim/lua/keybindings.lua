@@ -67,6 +67,7 @@ function M.get_defaults()
 		normal_mode = {
 			["Q"] = "<nop>",
 			["<C-f>"] = ':lua require("harpoon.term").sendCommand(1, "tmux-sessionizer\\n"); require("harpoon.term").gotoTerminal(1)<CR>',
+			["<C-w>"] = ':lua require("harpoon.term").sendCommand(1, "tmux-windowizer\\n"); require("harpoon.term").gotoTerminal(1)<CR>',
 			["<leader>vwh"] = ':h <C-R>=expand("<cword>")<CR><CR>',
 			["<leader>bs"] = '/<C-R>=escape(expand("<cWORD>"), "/")<CR><CR>',
 			["<leader>u"] = ":UndotreeShow<CR>",
