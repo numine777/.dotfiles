@@ -1,7 +1,7 @@
 -- Custom text objects
 local treesitter = {
 	ensure_installed = "all",
-	ignore_install = { "haskell" },
+	ignore_install = { "haskell", "php" },
 	highlight = { enabled = true },
 	-- The below are for treesitter-textobjects plugin
 	textobj_prefixes = {

@@ -4,14 +4,21 @@ CACHE_PATH = vim.fn.stdpath("cache")
 lvim.log.level = "warn"
 lvim.format_on_save = true
 lvim.colorscheme = "gruvbox"
-lvim.transparent_window = false
-lvim.builtin.nvimtree.ignore = {}
-lvim.builtin.nvimtree.hide_dotfiles = 0
+lvim.transparent_window = true
+lvim.builtin.nvimtree.setup.nvim_tree_ignore = {}
+lvim.builtin.nvimtree.setup.nvim_tree_hide_dotfiles = 0
+lvim.builtin.lualine.options.theme = "gruvbox"
+lvim.builtin.nvimtree.setup.update_cwd = false
+lvim.builtin.nvimtree.setup.hijack_netrw = false
+lvim.builtin.nvimtree.setup.disable_netrw = false
+lvim.builtin.nvimtree.setup.update_to_buf_dir = {enabled = false, auto_open = false}
 vim.opt.relativenumber = true
 vim.opt.clipboard = "unnamed"
 vim.opt.timeoutlen = 200
 vim.opt.shiftwidth = 4
 vim.opt.tabstop = 4
+vim.opt.mouse = ""
+vim.opt.showtabline = 1
 
 lvim.leader = "space"
 
@@ -20,6 +27,8 @@ lvim.leader = "space"
 lvim.builtin.dashboard.active = true
 lvim.builtin.terminal.active = true
 lvim.builtin.autopairs.active = true
+lvim.builtin.bufferline.active = false
+lvim.builtin.project.active = false
 lvim.builtin.terminal.open_mapping = [[<c-\>]]
 lvim.builtin.nvimtree.setup.view.side = "left"
 lvim.builtin.nvimtree.show_icons.git = 1
@@ -58,7 +67,7 @@ lvim.format_on_save = false
 
 lvim.plugins = {
 	{
-		"akinsho/flutter-tools.nvim",
+		{"akinsho/flutter-tools.nvim", commit = "d9697b913a7e199e48b09403755774bed7063a90" },
 		"ThePrimeagen/git-worktree.nvim",
 		"tpope/vim-fugitive",
 		"ThePrimeagen/harpoon",
@@ -131,6 +140,12 @@ require("flutter-tools").setup({
 		auto_open = false, -- if true this will open the outline automatically when it is first populated
 	},
 	lsp = {
+		color = { -- show the derived colours for dart variables
+			background = false, -- highlight the background
+			foreground = false, -- highlight the foreground
+			virtual_text = true, -- show the highlight using virtual text
+			virtual_text_str = "■", -- the virtual text character to highlight
+		},
 		capabilities = dart_capabilities, -- e.g. lsp_status capabilities
 		--- OR you can specify a function to deactivate or change or control how the config is created
 		settings = {
@@ -191,10 +206,10 @@ lvim.builtin.which_key.mappings["t"] = {
 	-- i = {"<cmd>lua require('harpoon.term').sendCommand(1, 2)<cr>", "Send Command 2"},
 }
 
-lvim.builtin.which_key.mappings["F"] = {
-	name = "+Flutter",
-	c = { "<cmd>lua require('telescope').extensions.flutter.commands()<cr>", "View Flutter Commands" },
-}
+-- lvim.builtin.which_key.mappings["F"] = {
+-- 	name = "+Flutter",
+-- 	c = { "<cmd>lua require('telescope').extensions.flutter.commands()<cr>", "View Flutter Commands" },
+-- }
 lvim.builtin.which_key.mappings["P"] = {
 	name = "Packer",
 	c = { "<cmd>PackerCompile<cr>", "Compile" },

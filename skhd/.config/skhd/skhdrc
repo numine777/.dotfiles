@@ -58,15 +58,15 @@ cmd + ctrl - 9 : yabai -m window --space 9; yabai -m space --focus 9
 # Move focus container to workspace
 cmd - z : yabai -m space --focus prev
 cmd - x : yabai -m space --focus next
-cmd - 1 : yabai -m space --focus 1
-cmd - 2 : yabai -m space --focus 2
-cmd - 3 : yabai -m space --focus 3
-cmd - 4 : yabai -m space --focus 4
-cmd - 5 : yabai -m space --focus 5
-cmd - 6 : yabai -m space --focus 6
-cmd - 7 : yabai -m space --focus 7
-cmd - 8 : yabai -m space --focus 8
-cmd - 9 : yabai -m space --focus 9
+cmd - + : yabai -m space --focus 1
+cmd - [ : yabai -m space --focus 2
+cmd - { : yabai -m space --focus 3
+cmd - ( : yabai -m space --focus 4
+cmd - & : yabai -m space --focus 5
+cmd - = : yabai -m space --focus 6
+cmd - ) : yabai -m space --focus 7
+cmd - } : yabai -m space --focus 8
+cmd - ] : yabai -m space --focus 9
 
 # focus monitor
 ctrl + shift - p  : yabai -m display --focus prev
@@ -115,7 +115,7 @@ ctrl + alt - s : yabai -m space --layout stack
 ctrl + alt - d : yabai -m space --layout float
 
 # opens iTerm2
-cmd - return : "${HOME}"/bin/open-iterm2.sh
+ctrl - return : "${HOME}"/bin/open-iterm2.sh
 cmd - b : open -na "Brave Browser" --args --new-window
 
 ctrl + shift - q : yabai -m window --close
