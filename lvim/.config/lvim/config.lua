@@ -5,13 +5,13 @@ lvim.log.level = "warn"
 lvim.format_on_save = true
 lvim.colorscheme = "gruvbox"
 lvim.transparent_window = true
-lvim.builtin.nvimtree.setup.nvim_tree_ignore = {}
-lvim.builtin.nvimtree.setup.nvim_tree_hide_dotfiles = 0
+-- lvim.builtin.nvimtree.setup.nvim_tree_ignore = {}
+-- lvim.builtin.nvimtree.setup.nvim_tree_hide_dotfiles = 0
 lvim.builtin.lualine.options.theme = "gruvbox"
-lvim.builtin.nvimtree.setup.update_cwd = false
-lvim.builtin.nvimtree.setup.hijack_netrw = false
-lvim.builtin.nvimtree.setup.disable_netrw = false
-lvim.builtin.nvimtree.setup.update_to_buf_dir = {enabled = false, auto_open = false}
+-- lvim.builtin.nvimtree.setup.update_cwd = false
+-- lvim.builtin.nvimtree.setup.hijack_netrw = false
+-- lvim.builtin.nvimtree.setup.disable_netrw = false
+-- lvim.builtin.nvimtree.setup.update_to_buf_dir = {enabled = false, auto_open = false}
 vim.opt.relativenumber = true
 vim.opt.clipboard = "unnamed"
 vim.opt.timeoutlen = 200
@@ -29,6 +29,7 @@ lvim.builtin.terminal.active = true
 lvim.builtin.autopairs.active = true
 lvim.builtin.bufferline.active = false
 lvim.builtin.project.active = false
+lvim.builtin.nvimtree.active = false
 lvim.builtin.terminal.open_mapping = [[<c-\>]]
 lvim.builtin.nvimtree.setup.view.side = "left"
 lvim.builtin.nvimtree.show_icons.git = 1
@@ -175,6 +176,7 @@ lvim.keys.normal_mode["<C-k>"] = ":lnext<CR>"
 lvim.keys.normal_mode["<C-f>"] =
 	':lua require("harpoon.term").sendCommand(1, "tmux-sessionizer\\n"); require("harpoon.term").gotoTerminal(1)<CR>'
 lvim.keys.term_mode["<Esc>"] = "<C-\\><C-n>"
+lvim.builtin.which_key.mappings["e"] = { ':Ex<CR>', "Explorer" }
 lvim.builtin.which_key.mappings["y"] = { '"+y', "Yank to clipboard" }
 lvim.builtin.which_key.vmappings["y"] = { '"+y', "Yank to clipboard" }
 lvim.builtin.which_key.mappings["d"] = { '"_d', "Delete" }
