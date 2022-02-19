@@ -1,3 +1,5 @@
+CACHE_PATH = vim.fn.stdpath("cache")
+
 -- general
 lvim.log.level = "warn"
 lvim.format_on_save = true
@@ -17,6 +19,10 @@ vim.opt.shiftwidth = 4
 vim.opt.tabstop = 4
 vim.opt.mouse = ""
 vim.opt.showtabline = 1
+vim.g.netrw_browse_split = 0
+vim.g.netrw_banner = 0
+vim.g.netrw_winsize = 25
+vim.g.netrw_localrmdir = "rm -rf"
 
 lvim.leader = "space"
 
