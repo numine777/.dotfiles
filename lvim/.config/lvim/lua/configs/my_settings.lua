@@ -66,6 +66,7 @@ formatters.setup({
 	},
 	{ exe = "stylua", filetypes = { "lua" } },
 	-- { exe = "clang-format", filetypes = { "cpp" } },
+	{ exe = "black", filetypes = { "python" } },
 })
 
 lvim.format_on_save = false
