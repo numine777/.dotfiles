@@ -112,7 +112,7 @@ source $ZSH/oh-my-zsh.sh
 alias ibrew="arch -x86_64 /usr/local/bin/brew"
 alias brew="/opt/homebrew/bin/brew"
 alias nvim="/usr/local/bin/nvim"
-alias vim="nvim"
+alias vim="lvim"
 alias getToken="python3 /Users/scott/work/adyton/generate_token.py"
 export PATH="$PATH:/opt/homebrew/bin"
 export PATH="/usr/local/opt/python@3.7/bin:$PATH"
@@ -135,6 +135,7 @@ export PATH="$PATH:$ANDROID_SDK_ROOT/emulator"
 export PATH="$PATH:$ANDROID_SDK_ROOT/tools"
 export PATH="$PATH:$ANDROID_SDK_ROOT/tools/bin"
 export PATH="$PATH:$ANDROID_SDK_ROOT/platform-tools"
+export PATH="$PATH:/usr/local/go/bin"
 export LANG=en_US.UTF-8
 export LC_CTYPE=en_US.UTF-8
 

@@ -1,11 +1,12 @@
 lvim.plugins = {
 	{
-		{"akinsho/flutter-tools.nvim", commit = "d9697b913a7e199e48b09403755774bed7063a90" },
+		{ "akinsho/flutter-tools.nvim", commit = "d9697b913a7e199e48b09403755774bed7063a90" },
 		"ThePrimeagen/git-worktree.nvim",
 		"tpope/vim-fugitive",
 		"ThePrimeagen/harpoon",
 		"mtth/scratch.vim",
 		"Shatur/neovim-ayu",
+		"romgrk/nvim-treesitter-context",
 		{ "npxbr/gruvbox.nvim", requires = { "rktjmp/lush.nvim" } },
 		{ "tzachar/cmp-tabnine", run = "./install.sh", requires = "hrsh7th/nvim-cmp" },
 		-- { "github/copilot.vim" },
