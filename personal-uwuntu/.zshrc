@@ -124,7 +124,7 @@ alias luamake=/home/scott/lua-language-server/3rd/luamake/luamake
 # scripts
 alias adyton=". /home/scott/scripts/ssh/mountAdyton.sh"
 alias polygrok=". /home/scott/scripts/ssh/mountMac.sh"
-alias vim="nvim"
+alias vim="lvim"
 alias adytonVPN=". /home/scott/scripts/vpn/adytonVPN.sh"
 alias emulator="/home/scott/Android/Sdk/emulator/emulator"
 alias phone="emulator -avd Pixel_3a_API_30_x86 -dns-server 8.8.8.8"
