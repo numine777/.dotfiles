@@ -86,7 +86,7 @@ lvim.builtin.which_key.mappings["r"] = {
 	name = "Refactor",
 	r = { ':lua require("configs.telescope").refactors()<CR>', "Telescope" },
 }
-lvim.builtin.which_key.vmappings["r"] = { { r = ':lua require("configs.telescope").refactors()<CR>', "Refactor" } }
+lvim.builtin.which_key.vmappings["r"] = { r = { ':lua require("configs.telescope").refactors()<CR>', "Refactor" } }
 -- vim.cmd('nnoremap <leader>rr :lua require("lv-telescope").refactors()<CR>')
 -- vim.cmd('vnoremap <leader>rr :lua require("lv-telescope").refactors()<CR>')
 -- vim.cmd(

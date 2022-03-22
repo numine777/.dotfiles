@@ -68,4 +68,40 @@ formatters.setup({
 	{ exe = "black", filetypes = { "python" } },
 })
 
+local function tprint(tbl, indent)
+	if not indent then
+		indent = 0
+	end
+    local return_string = ""
+	for k, v in pairs(tbl) do
+		local formatting = string.rep("  ", indent) .. k .. ": "
+		if type(v) == "table" then
+			print(formatting)
+			tprint(v, indent + 1)
+		elseif type(v) == "boolean" then
+			print(formatting .. tostring(v))
+		else
+			print(formatting .. v)
+		end
+	end
+end
+
+local root_files = {
+	"tsconfig.json",
+	".eslintrc.js",
+	"package.json",
+	".git",
+	"BUILD.bazel",
+}
+local linters = require("lvim.lsp.null-ls.linters")
+local util = require("lspconfig.util")
+linters.setup({
+	{
+		exe = "eslint",
+		filetypes = { "javascript", "javascriptreact", "typescript", "typescriptreact", "json" },
+		cwd = function(params)
+			return util.root_pattern(unpack(root_files))(params.bufname) or util.path.dirname(params.bufname)
+		end,
+	},
+})
 lvim.format_on_save = false
