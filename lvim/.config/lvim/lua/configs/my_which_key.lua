@@ -8,7 +8,7 @@ lvim.keys.normal_mode["<C-k>"] = ":lnext<CR>"
 lvim.keys.normal_mode["<C-f>"] =
 	':lua require("harpoon.term").sendCommand(1, "tmux-sessionizer\\n"); require("harpoon.term").gotoTerminal(1)<CR>'
 lvim.keys.term_mode["<Esc>"] = "<C-\\><C-n>"
-lvim.builtin.which_key.mappings["e"] = { ':Ex<CR>', "Explorer" }
+lvim.builtin.which_key.mappings["e"] = { ":Ex<CR>", "Explorer" }
 lvim.builtin.which_key.mappings["y"] = { '"+y', "Yank to clipboard" }
 lvim.builtin.which_key.vmappings["y"] = { '"+y', "Yank to clipboard" }
 lvim.builtin.which_key.mappings["d"] = { '"_d', "Delete" }
@@ -65,7 +65,7 @@ lvim.builtin.which_key.mappings["v"] = {
 		"<cmd>Telescope lsp_workspace_diagnostics<cr>",
 		"Workspace Diagnostics",
 	},
-	f = { "<cmd>lua vim.lsp.buf.formatting()<cr>", "Format" },
+	f = { "<cmd>lua vim.lsp.buf.formatting({ async = true })<cr>", "Format" },
 	i = { "<cmd>LspInfo<cr>", "Info" },
 	I = { "<cmd>LspInstallInfo<cr>", "Installer Info" },
 	j = {

@@ -1,3 +1,3 @@
 {
-    "python.pythonPath": "/home/scott/work/Adyton/adtcode/bolt-169/bazel-bin/svc_mustr/backend/venv/bin/python"
+    "python.pythonPath": "/home/scott/work/Adyton/adtcode/nix-flake/bazel-bin/svc_mustr/backend/venv/bin/python"
 }
