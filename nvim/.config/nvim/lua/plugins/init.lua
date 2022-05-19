@@ -75,11 +75,11 @@ require("packer").startup({
 		})
 
 		--  LSP ----------------------------------------------------
-		-- use({
-		-- 	"jose-elias-alvarez/null-ls.nvim",
-		-- 	module = "null-ls",
-		-- 	after = "nvim-lspconfig",
-		-- })
+		use({
+			"jose-elias-alvarez/null-ls.nvim",
+			module = "null-ls",
+			after = "nvim-lspconfig",
+		})
 		use({
 			"folke/trouble.nvim",
 			after = "nvim-lspconfig",
@@ -158,7 +158,7 @@ require("packer").startup({
 			config = function()
 				require("plugins.cmp").init()
 				require("plugins.cmp_tabnine").init()
-				require("plugins.lspkind").init()
+				require("plugins.lsp_kind").init()
 			end,
 		})
 		use({
