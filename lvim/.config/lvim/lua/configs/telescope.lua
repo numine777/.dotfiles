@@ -46,7 +46,7 @@ end
 local function select_background(prompt_bufnr, map)
 	local function set_the_background(close)
 		local content = require("telescope.actions.state").get_selected_entry(prompt_bufnr)
-		set_background(content.cwd .. "/" .. content.value)
+		set_background(content.cwd .. "/" .. string.sub(content.value, 3))
 		if close then
 			require("telescope.actions").close(prompt_bufnr)
 		end
@@ -78,7 +78,7 @@ local function image_selector(prompt, cwd)
 	end
 end
 
-M.anime_selector = image_selector("< Anime Bobs > ", "~/backgrounds")
+M.anime_selector = image_selector("< Anime Bobs > ", "~/backgrounds/files")
 
 lvim.builtin.which_key.mappings["s"]["a"] = { ':lua require("configs.telescope").anime_selector()<CR>', "Anime Bobs" }
 lvim.builtin.which_key.mappings["s"]["d"] = { ':lua require("configs.telescope").search_dotfiles()<CR>', "Dotfiles" }

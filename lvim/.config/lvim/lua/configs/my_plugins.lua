@@ -8,9 +8,10 @@ lvim.plugins = {
 		"Shatur/neovim-ayu",
 		"romgrk/nvim-treesitter-context",
 		{ "npxbr/gruvbox.nvim", requires = { "rktjmp/lush.nvim" } },
-        'shaunsingh/nord.nvim',
+		"shaunsingh/nord.nvim",
 		{ "tzachar/cmp-tabnine", run = "./install.sh", requires = "hrsh7th/nvim-cmp" },
 		-- { "github/copilot.vim" },
+		{ "norcalli/nvim-colorizer.lua" },
 	},
 }
 
@@ -22,3 +23,4 @@ require("harpoon").setup({
 vim.g.scratch_persistence_file = CACHE_PATH .. "/.vim/scratch_file"
 require("telescope").load_extension("git_worktree")
 require("telescope").load_extension("flutter")
+require'colorizer'.setup()
