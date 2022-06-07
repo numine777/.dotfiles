@@ -3,11 +3,22 @@ CACHE_PATH = vim.fn.stdpath("cache")
 -- general
 lvim.log.level = "warn"
 lvim.format_on_save = true
-lvim.colorscheme = "nord"
+-- lvim.colorscheme = "nord"
 lvim.transparent_window = true
 -- lvim.builtin.nvimtree.setup.nvim_tree_ignore = {}
 -- lvim.builtin.nvimtree.setup.nvim_tree_hide_dotfiles = 0
-lvim.builtin.lualine.options.theme = "nord"
+-- lvim.builtin.lualine.options.theme = "nord"
+-- Example config in Lua
+vim.g.tokyonight_style = "night"
+vim.g.tokyonight_italic_functions = true
+vim.g.tokyonight_sidebars = { "qf", "vista_kind", "terminal", "packer" }
+
+-- Change the "hint" color to the "orange" color, and make the "error" color bright red
+vim.g.tokyonight_colors = { hint = "orange", error = "#ff0000" }
+
+-- Load the colorscheme
+lvim.colorscheme = "tokyonight"
+lvim.builtin.lualine.options.theme = "tokyonight"
 -- lvim.builtin.nvimtree.setup.update_cwd = false
 -- lvim.builtin.nvimtree.setup.hijack_netrw = false
 -- lvim.builtin.nvimtree.setup.disable_netrw = false
@@ -37,8 +48,9 @@ lvim.builtin.bufferline.active = false
 lvim.builtin.project.active = false
 lvim.builtin.nvimtree.active = false
 lvim.builtin.terminal.open_mapping = [[<c-\>]]
-lvim.builtin.nvimtree.setup.view.side = "left"
-lvim.builtin.nvimtree.show_icons.git = 1
+lvim.lsp.automatic_servers_installation = true
+-- lvim.builtin.nvimtree.setup.view.side = "left"
+-- lvim.builtin.nvimtree.show_icons.git = 1
 
 -- if you don't want all the parsers change this to a table of the ones you want
 lvim.builtin.treesitter.ensure_installed = {
